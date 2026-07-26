@@ -1,8 +1,68 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+
+# Diagnostic reports
+report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
+
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
+
+# Coverage and caches
+coverage
+*.lcov
+.nyc_output
+.cache
+.parcel-cache
+.eslintcache
+.stylelintcache
+*.tsbuildinfo
+
+# Dependency directories
 node_modules/
-.next/
+jspm_packages/
+web_modules/
+
+# Package manager caches
+.npm
 .pnpm-store/
 .pnpm-global/
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.yarn-integrity
+
+# Environment files
 .env
+.env.*
 .env*.local
-*.log
+!.env.example
+
+# Next.js / build output
+.next/
+out/
+dist/
+.vercel/
+
+# Other generated output
+build/Release
+lib-cov
+.grunt
+.vite/
+vite.config.js.timestamp-*
+vite.config.ts.timestamp-*
+
+# Large source archives kept outside GitHub
 *.zip
+*.tgz
