@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Projekt 01 — Portfolio — Ewa Wierzba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF7F1; --bg-alt:#F2ECDF; --panel:#FFFFFF;
+    --ink:#171512; --ink-soft:#544F45; --ink-faint:#8D8778;
+    --accent:#D4291B; --line:#E3DCC9; --line-strong:#D0C6AC;
+    --radius:3px; --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Inter', sans-serif; font-size:16px; line-height:1.65; -webkit-font-smoothing:antialiased;}
+  a{color:inherit; text-decoration:none;}
+
+  .topnav{position:sticky; top:0; z-index:50; background:rgba(250,247,241,0.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  .topnav-inner{max-width:var(--maxw); margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;}
+  .topnav-brand{font-family:'Anton', sans-serif; font-size:18px;}
+  .back-link{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ink-soft);}
+  .back-link:hover{color:var(--accent);}
+
+  /* ---------- Hero ---------- */
+  .case-hero{max-width:var(--maxw); margin:0 auto; padding:56px 24px 0;}
+  .case-tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:18px;}
+  .card-tag{font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.03em; color:var(--accent); background:#FBEBE8; padding:3px 9px; border-radius:12px;}
+  .case-hero h1{font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; font-size:clamp(34px,6vw,58px); line-height:1.0; margin:0 0 14px;}
+  .case-hero .client{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ink-faint); margin-bottom:32px;}
+  .case-hero .intro{max-width:62ch; font-size:19px; color:var(--ink-soft); margin-bottom:40px;}
+
+  /* MEDIA PLACEHOLDER: hero image/video kejsu — pole "obkładka" / główne wideo z Notion */
+  .hero-media{
+    aspect-ratio:16/9; background:#0A0A0A; border-radius:var(--radius);
+    max-width:var(--maxw); margin:0 auto 64px; position:relative;
+  }
+  .hero-media::after{
+    content:"▸ miejsce na hero image / wideo projektu";
+    position:absolute; bottom:20px; left:20px; font-family:'IBM Plex Mono', monospace; font-size:12px; color:rgba(255,255,255,0.45);
+  }
+
+  /* ---------- Story blocks ---------- */
+  .case-story{max-width:var(--maxw); margin:0 auto; padding:0 24px 60px; display:grid; grid-template-columns:200px 1fr; gap:40px;}
+  .story-block{padding:32px 0; border-top:1px solid var(--line); display:contents;}
+  .story-label{
+    font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.06em;
+    color:var(--accent); padding:32px 0; border-top:1px solid var(--line);
+  }
+  .story-content{padding:32px 0; border-top:1px solid var(--line); max-width:68ch; font-size:16px; color:var(--ink);}
+  .story-content p{margin:0;}
+
+  /* ---------- Services used ---------- */
+  .services-block{max-width:var(--maxw); margin:0 auto; padding:40px 24px 60px; border-top:1px solid var(--line);}
+  .services-label{font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:16px;}
+  .services-list{display:flex; flex-wrap:wrap; gap:10px;}
+  .service-chip{
+    font-size:13.5px; font-weight:600; background:var(--panel); border:1px solid var(--line-strong);
+    border-radius:20px; padding:8px 16px; display:flex; align-items:center; gap:6px;
+  }
+  .service-chip::before{content:"✓"; color:var(--accent);}
+
+  /* ---------- Gallery ---------- */
+  .gallery-section{max-width:var(--maxw); margin:0 auto; padding:60px 24px; background:var(--bg-alt);}
+  .gallery-heading{font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; font-size:22px; margin:0 0 28px;}
+  .gallery-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:16px;}
+  .gallery-slot{aspect-ratio:3/4; background:#0A0A0A; border-radius:var(--radius); position:relative;}
+  .gallery-slot::after{content:"▸ galeria"; position:absolute; bottom:10px; left:10px; font-family:'IBM Plex Mono', monospace; font-size:10.5px; color:rgba(255,255,255,0.4);}
+
+  /* ---------- Result ---------- */
+  .result-section{max-width:900px; margin:0 auto; padding:80px 24px; text-align:center;}
+  .result-eyebrow{font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.08em; color:var(--accent); margin-bottom:18px;}
+  .result-text{font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; font-size:clamp(24px,3.6vw,36px); line-height:1.2; letter-spacing:-0.005em;}
+  .result-text .accent-script{font-family:'Caveat', cursive; color:var(--accent); font-weight:700; text-transform:none; font-size:1.15em;}
+
+  /* ---------- Similar projects ---------- */
+  .similar-section{max-width:var(--maxw); margin:0 auto; padding:60px 24px 100px; border-top:1px solid var(--line);}
+  .similar-heading{font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:24px;}
+  .similar-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(220px,1fr)); gap:20px;}
+  .similar-card{background:var(--panel); border:1px solid var(--line); border-radius:var(--radius); overflow:hidden;}
+  .similar-media{aspect-ratio:4/5; background:#0A0A0A;}
+  .similar-body{padding:14px 16px;}
+  .similar-title{font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; font-size:14px;}
+
+  /* ---------- Final CTA ---------- */
+  .case-cta{background:var(--ink); color:var(--bg); text-align:center; padding:64px 24px;}
+  .case-cta-title{font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; font-size:clamp(26px,4.5vw,42px); margin:0 0 24px;}
+  .case-cta-button{display:inline-block; background:var(--bg); color:var(--ink); font-weight:600; padding:15px 32px; border-radius:40px;}
+
+  @media (max-width:760px){
+    .case-story{grid-template-columns:1fr;}
+    .story-label{border-top:none; padding-bottom:6px;}
+    .story-content{padding-top:0;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="topnav-brand">EWA WIERZBA</div>
+    <a class="back-link" href="portfolio.html">← Wróć do Portfolio</a>
+  </div>
+</nav>
+
+<!--
+==============================================================================
+SZABLON STRONY KEJSU — jedna taka strona na każdy projekt w Notion.
+==============================================================================
+W Next.js to będzie dynamiczny route: /app/portfolio/[slug]/page.tsx,
+który pobiera dane pojedynczego kejsu z Notion po polu "slug" i wypełnia
+dokładnie te same bloki, które widać niżej (nagłówek, media, story, galeria,
+rezultat, similar projects). Nic w strukturze HTML nie trzeba zmieniać —
+zmienia się tylko źródło danych (teraz: hardcoded tekst poniżej,
+docelowo: Notion API response).
+
+Pola z Notion → gdzie trafiają na stronie:
+  tytuł            → <h1>
+  klient/nisza      → .client
+  krótki wstęp      → .intro
+  kategorie [multi-select, dynamiczne] → .case-tags
+  obkładka/wideo    → .hero-media
+  zadanie klienta   → sekcja "Zadanie"
+  koncepcja         → sekcja "Koncepcja"
+  co powstało       → sekcja "Realizacja"
+  użyte usługi      → .services-list (checklist Strategy/Shooting/Editing/Motion Design)
+  galeria           → .gallery-grid (dowolna liczba slotów)
+  rezultat/wartość  → .result-text
+  podobne projekty  → .similar-grid (auto: kejsy z tą samą kategorią)
+==============================================================================
+-->
+
+<!-- Kategorie na tej stronie: Gastronomia, Nieruchomości, Beauty, Eventy,
+     Śluby, Sesje indywidualne — plus dowolne nowe, dodane w Notion. -->
+
+<header class="case-hero">
+  <div class="case-tags">
+    <span class="card-tag">Gastronomia</span>
+  </div>
+  <h1>Nazwa projektu</h1>
+  <div class="client">Klient: Nazwa klienta &nbsp;·&nbsp; Wrocław</div>
+  <p class="intro">Krótkie, emocjonalne zdanie o tym, o co chodziło w tym projekcie — jedno-dwa zdania, które od razu wciągają.</p>
+</header>
+
+<div class="hero-media"></div>
+
+<div class="case-story">
+  <div class="story-label">Zadanie</div>
+  <div class="story-content"><p>Co chciał osiągnąć klient. Jaki miał problem albo cel przed rozpoczęciem współpracy — opisane jego słowami, nie technicznym żargonem.</p></div>
+
+  <div class="story-label">Koncepcja</div>
+  <div class="story-content"><p>Co wymyśliłam. Jak podeszłam do tematu, jaki pomysł stał za realizacją i dlaczego akurat taki.</p></div>
+
+  <div class="story-label">Realizacja</div>
+  <div class="story-content"><p>Co dokładnie zostało zrobione: dzień zdjęciowy, liczba ujęć, szczególne wyzwania na miejscu, jak wyglądała praca krok po kroku.</p></div>
+</div>
+
+<div class="services-block">
+  <div class="services-label">Użyte usługi</div>
+  <div class="services-list">
+    <span class="service-chip">Strategy</span>
+    <span class="service-chip">Shooting</span>
+    <span class="service-chip">Editing</span>
+    <span class="service-chip">Motion Design</span>
+  </div>
+</div>
+
+<section class="gallery-section">
+  <h2 class="gallery-heading">Galeria</h2>
+  <!-- MEDIA PLACEHOLDER: dowolna liczba slotów, docelowo z pola "galeria" w Notion -->
+  <div class="gallery-grid">
+    <div class="gallery-slot"></div>
+    <div class="gallery-slot"></div>
+    <div class="gallery-slot"></div>
+    <div class="gallery-slot"></div>
+    <div class="gallery-slot"></div>
+    <div class="gallery-slot"></div>
+  </div>
+</section>
+
+<section class="result-section">
+  <div class="result-eyebrow">Rezultat</div>
+  <p class="result-text">Krótki opis <span class="accent-script">efektu i wartości</span> dla klienta — atmosfera, wynik, to co się realnie zmieniło.</p>
+</section>
+
+<section class="similar-section">
+  <div class="similar-heading">Podobne realizacje</div>
+  <!-- Docelowo: 3–6 kejsów z tymi samymi tagami, pobrane automatycznie z Notion po kategorii/typie -->
+  <div class="similar-grid">
+    <a class="similar-card" href="portfolio-case.html?slug=projekt-02">
+      <div class="similar-media"></div>
+      <div class="similar-body"><div class="similar-title">Projekt 02</div></div>
+    </a>
+    <a class="similar-card" href="portfolio-case.html?slug=projekt-03">
+      <div class="similar-media"></div>
+      <div class="similar-body"><div class="similar-title">Projekt 03</div></div>
+    </a>
+    <a class="similar-card" href="portfolio-case.html?slug=projekt-06">
+      <div class="similar-media"></div>
+      <div class="similar-body"><div class="similar-title">Projekt 06</div></div>
+    </a>
+  </div>
+</section>
+
+<section class="case-cta">
+  <h2 class="case-cta-title">Chcesz coś podobnego?</h2>
+  <a class="case-cta-button" href="oferta.html">Zobacz ofertę →</a>
+</section>
+
+</body>
+</html>

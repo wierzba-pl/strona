@@ -1,0 +1,997 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Regulamin współpracy — Ewa Wierzba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Source+Serif+4:opsz,wght@8..60,400;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#F7F5F0;
+    --panel:#FFFFFF;
+    --ink:#17171A;
+    --ink-soft:#5B584F;
+    --ink-faint:#8C887C;
+    --accent:#A8291F;
+    --accent-soft:#C8877F;
+    --line:#E4E0D4;
+    --line-strong:#D2CCBC;
+    --radius:2px;
+    --maxw:1180px;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:17px;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  a{color:var(--accent); text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  a:focus-visible, button:focus-visible{outline:2px solid var(--accent); outline-offset:2px;}
+
+  strong{color:var(--ink); font-weight:600;}
+
+  /* ---------- Top bar ---------- */
+  .topbar{
+    position:sticky; top:0; z-index:40;
+    background:rgba(247,245,240,0.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+    display:flex; align-items:center; justify-content:space-between;
+    padding:14px 24px;
+  }
+  .topbar-brand{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    color:var(--ink-soft);
+  }
+  .topbar-brand strong{color:var(--ink); font-weight:500;}
+  .toc-toggle{
+    display:none;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.05em;
+    text-transform:uppercase;
+    background:var(--ink);
+    color:var(--bg);
+    border:none;
+    padding:9px 14px;
+    border-radius:var(--radius);
+    cursor:pointer;
+  }
+
+  /* ---------- Layout ---------- */
+  .layout{
+    max-width:var(--maxw);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:280px 1fr;
+    gap:56px;
+    padding:48px 24px 120px;
+    align-items:start;
+  }
+
+  /* ---------- Sidebar ---------- */
+  .sidebar{
+    position:sticky;
+    top:76px;
+    display:flex;
+    gap:14px;
+    max-height:calc(100vh - 96px);
+  }
+  .rule-track{
+    width:2px;
+    background:var(--line-strong);
+    border-radius:2px;
+    flex:0 0 auto;
+    position:relative;
+    overflow:hidden;
+  }
+  .rule-fill{
+    position:absolute;
+    top:0; left:0; width:100%;
+    background:var(--accent);
+    height:0%;
+    transition:height .15s ease-out;
+  }
+  .toc-wrap{
+    overflow-y:auto;
+    padding-right:6px;
+  }
+  .toc-wrap::-webkit-scrollbar{width:4px;}
+  .toc-wrap::-webkit-scrollbar-thumb{background:var(--line-strong); border-radius:4px;}
+
+  .doc-meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    color:var(--ink-faint);
+    margin-bottom:18px;
+    padding-bottom:16px;
+    border-bottom:1px solid var(--line);
+  }
+  .doc-meta strong{
+    display:block;
+    color:var(--ink-soft);
+    font-weight:500;
+    margin-top:4px;
+  }
+
+  .toc-list{list-style:none; margin:0; padding:0;}
+  .toc-list li{margin:0;}
+  .toc-list a{
+    display:flex;
+    gap:10px;
+    align-items:baseline;
+    padding:7px 4px;
+    color:var(--ink-soft);
+    border-radius:var(--radius);
+    font-size:13.5px;
+    line-height:1.35;
+  }
+  .toc-list a:hover{color:var(--ink); text-decoration:none; background:var(--panel);}
+  .toc-list a.active{color:var(--accent);}
+  .toc-list a.active .toc-num{color:var(--accent);}
+  .toc-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-faint);
+    flex:0 0 auto;
+    min-width:26px;
+  }
+  .toc-title{font-family:'Source Serif 4', serif;}
+
+  /* ---------- Main content ---------- */
+  .content{min-width:0;}
+
+  .doc-header{
+    margin-bottom:56px;
+    padding-bottom:36px;
+    border-bottom:1px solid var(--line);
+  }
+  .doc-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--accent);
+    margin-bottom:14px;
+  }
+  .doc-header h1{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:clamp(34px, 5vw, 52px);
+    line-height:1.05;
+    letter-spacing:-0.01em;
+    margin:0 0 8px;
+    color:var(--ink);
+  }
+  .doc-header h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:400;
+    font-size:14px;
+    color:var(--ink-faint);
+    letter-spacing:0.03em;
+    margin:0 0 26px;
+  }
+  .doc-header p{
+    max-width:62ch;
+    color:var(--ink-soft);
+    font-size:16px;
+  }
+
+  .reg-section{
+    padding:38px 0;
+    border-bottom:1px solid var(--line);
+    scroll-margin-top:88px;
+  }
+  .reg-section:last-child{border-bottom:none;}
+
+  .reg-section-head{
+    display:flex;
+    align-items:baseline;
+    gap:16px;
+    margin-bottom:16px;
+  }
+  .reg-num{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:14px;
+    color:var(--accent);
+    flex:0 0 auto;
+  }
+  .reg-section-head h2{
+    font-family:'Fraunces', serif;
+    font-weight:600;
+    font-size:22px;
+    margin:0;
+    color:var(--ink);
+    letter-spacing:-0.005em;
+  }
+
+  .reg-body{color:var(--ink); max-width:72ch;}
+  .reg-body p{margin:0 0 14px; color:var(--ink);}
+  .reg-body ol{margin:0 0 4px; padding-left:22px;}
+  .reg-body ol > li{margin-bottom:14px; padding-left:4px;}
+  .reg-body ul{margin:8px 0 14px; padding-left:20px;}
+  .reg-body ul > li{margin-bottom:6px; color:var(--ink-soft);}
+  .reg-body ul > li::marker{color:var(--ink-faint);}
+  .reg-body h3{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    text-transform:uppercase;
+    letter-spacing:0.05em;
+    color:var(--ink-faint);
+    margin:22px 0 10px;
+  }
+  .reg-body blockquote{
+    margin:14px 0;
+    padding:12px 16px;
+    background:#FBF1EA;
+    border-left:3px solid var(--accent);
+    color:var(--accent);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    line-height:1.5;
+  }
+  .reg-body strong{color:var(--accent); font-weight:600;}
+
+  .extra{max-width:72ch; color:var(--ink-soft); font-style:italic; margin-bottom:24px;}
+
+  /* ---------- Back to top ---------- */
+  .back-top{
+    position:fixed;
+    right:28px;
+    bottom:28px;
+    width:44px; height:44px;
+    border-radius:50%;
+    background:var(--ink);
+    color:var(--bg);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:16px;
+    border:none;
+    cursor:pointer;
+    opacity:0;
+    pointer-events:none;
+    transition:opacity .2s ease;
+    z-index:50;
+  }
+  .back-top.visible{opacity:1; pointer-events:auto;}
+
+  /* ---------- Responsive ---------- */
+  @media (max-width: 900px){
+    .layout{grid-template-columns:1fr; padding-top:24px;}
+    .sidebar{
+      position:fixed;
+      top:0; left:0; right:0; bottom:0;
+      background:var(--bg);
+      z-index:60;
+      padding:80px 24px 24px;
+      transform:translateY(-100%);
+      transition:transform .25s ease;
+      max-height:none;
+    }
+    .sidebar.open{transform:translateY(0);}
+    .toc-toggle{display:inline-block;}
+    .rule-track{display:none;}
+    .doc-header{margin-bottom:36px; padding-bottom:24px;}
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    .rule-fill, .back-top, .sidebar{transition:none;}
+  }
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-brand"><strong>EWA WIERZBA</strong> · Dokumenty</div>
+  <button class="toc-toggle" id="tocToggle">Spis treści</button>
+</div>
+
+<div class="layout">
+
+  <aside class="sidebar" id="sidebar">
+    <div class="rule-track"><div class="rule-fill" id="ruleFill"></div></div>
+    <div class="toc-wrap">
+      <div class="doc-meta">
+        Regulamin współpracy
+        <strong>Obowiązuje od 16.07.2026</strong>
+      </div>
+      <ul class="toc-list" id="tocList">
+        <li><a href="#par-1" data-target="par-1"><span class="toc-num">§1</span><span class="toc-title">Definicje</span></a></li>
+<li><a href="#par-2" data-target="par-2"><span class="toc-num">§2</span><span class="toc-title">Rezerwacja terminu</span></a></li>
+<li><a href="#par-3" data-target="par-3"><span class="toc-num">§3</span><span class="toc-title">Oferta i zawarcie współpracy</span></a></li>
+<li><a href="#par-4" data-target="par-4"><span class="toc-num">§4</span><span class="toc-title">Organizacja projektu</span></a></li>
+<li><a href="#par-5" data-target="par-5"><span class="toc-num">§5</span><span class="toc-title">Obowiązki Klienta</span></a></li>
+<li><a href="#par-6" data-target="par-6"><span class="toc-num">§6</span><span class="toc-title">Organizacja dnia zdjęciowego</span></a></li>
+<li><a href="#par-7" data-target="par-7"><span class="toc-num">§7</span><span class="toc-title">Priorytety realizacji</span></a></li>
+<li><a href="#par-8" data-target="par-8"><span class="toc-num">§8</span><span class="toc-title">Zmiana briefu</span></a></li>
+<li><a href="#par-9" data-target="par-9"><span class="toc-num">§9</span><span class="toc-title">Dodatkowy zakres prac</span></a></li>
+<li><a href="#par-10" data-target="par-10"><span class="toc-num">§10</span><span class="toc-title">Czas realizacji</span></a></li>
+<li><a href="#par-11" data-target="par-11"><span class="toc-num">§11</span><span class="toc-title">Komunikacja</span></a></li>
+<li><a href="#par-12" data-target="par-12"><span class="toc-num">§12</span><span class="toc-title">Siła wyższa</span></a></li>
+<li><a href="#par-13" data-target="par-13"><span class="toc-num">§13</span><span class="toc-title">Materiały źródłowe (RAW)</span></a></li>
+<li><a href="#par-14" data-target="par-14"><span class="toc-num">§14</span><span class="toc-title">Montaż materiałów</span></a></li>
+<li><a href="#par-15" data-target="par-15"><span class="toc-num">§15</span><span class="toc-title">Poprawki</span></a></li>
+<li><a href="#par-16" data-target="par-16"><span class="toc-num">§16</span><span class="toc-title">Akceptacja materiałów</span></a></li>
+<li><a href="#par-17" data-target="par-17"><span class="toc-num">§17</span><span class="toc-title">Archiwizacja</span></a></li>
+<li><a href="#par-18" data-target="par-18"><span class="toc-num">§18</span><span class="toc-title">Dodatkowe materiały</span></a></li>
+<li><a href="#par-19" data-target="par-19"><span class="toc-num">§19</span><span class="toc-title">Prawa autorskie</span></a></li>
+<li><a href="#par-20" data-target="par-20"><span class="toc-num">§20</span><span class="toc-title">Portfolio</span></a></li>
+<li><a href="#par-21" data-target="par-21"><span class="toc-num">§21</span><span class="toc-title">Wynagrodzenie i płatności</span></a></li>
+<li><a href="#par-22" data-target="par-22"><span class="toc-num">§22</span><span class="toc-title">Pakiety i wyceny indywidualne</span></a></li>
+<li><a href="#par-23" data-target="par-23"><span class="toc-num">§23</span><span class="toc-title">Rezultat usługi (KPI)</span></a></li>
+<li><a href="#par-24" data-target="par-24"><span class="toc-num">§24</span><span class="toc-title">Reklamacje</span></a></li>
+<li><a href="#par-25" data-target="par-25"><span class="toc-num">§25</span><span class="toc-title">Odpowiedzialność</span></a></li>
+<li><a href="#par-26" data-target="par-26"><span class="toc-num">§26</span><span class="toc-title">Poufność i RODO</span></a></li>
+      </ul>
+    </div>
+  </aside>
+
+  <main class="content">
+    <header class="doc-header">
+      <div class="doc-eyebrow">Dokument prawny · 26 paragrafów</div>
+      <h1>Regulamin współpracy</h1>
+      <h3>obowiązuje od dnia 16.07.2026</h3>
+      <p>Niniejszy Regulamin określa zasady współpracy pomiędzy Wykonawcą a Klientem w zakresie realizacji usług produkcji materiałów foto i wideo.</p>
+<p>Akceptacja oferty, podpisanie umowy lub rozpoczęcie współpracy oznacza akceptację niniejszego Regulaminu.</p>
+<p>Regulamin stanowi integralną część każdej oferty oraz umowy zawieranej z Wykonawcą, o ile Strony nie postanowią inaczej w formie pisemnej.</p>
+    </header>
+
+    
+<section class="reg-section" id="par-1">
+  <div class="reg-section-head">
+    <span class="reg-num">§1</span>
+    <h2>Definicje</h2>
+  </div>
+  <div class="reg-body">
+    <p><strong>Wykonawca</strong> – Yeva Trehubova, prowadząca działalność gospodarczą w zakresie produkcji materiałów foto i wideo.</p>
+<p><strong>Klient</strong> – osoba fizyczna prowadząca działalność gospodarczą, osoba prawna lub jednostka organizacyjna zamawiająca realizację usługi.</p>
+<p><strong>Oferta</strong> – dokument określający indywidualny zakres współpracy, liczbę materiałów, terminy, cenę oraz pozostałe ustalenia handlowe.</p>
+<p><strong>Umowa</strong> – umowa zawarta pomiędzy Stronami regulująca realizację konkretnego projektu.</p>
+<p><strong>Projekt</strong> – całość działań związanych z przygotowaniem, realizacją i przekazaniem materiałów.</p>
+<p><strong>Dzień zdjęciowy</strong> – uzgodniony termin przeznaczony na realizację nagrań lub zdjęć.</p>
+<p><strong>Materiał finalny</strong> – gotowy materiał foto lub wideo przekazany Klientowi po montażu i obróbce.</p>
+<p><strong>Materiały źródłowe (RAW)</strong> – wszelkie nieobrobione pliki z aparatów, kamer oraz pliki projektowe.</p>
+  </div>
+</section>
+
+<section class="reg-section" id="par-2">
+  <div class="reg-section-head">
+    <span class="reg-num">§2</span>
+    <h2>Rezerwacja terminu</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Rezerwacja terminu następuje po potwierdzeniu dostępności przez Wykonawcę.</li>
+<li>Rezerwacja może zostać dokonana:
+   - poprzez wiadomość e-mail,
+   - poprzez wiadomość tekstową,
+   - podczas rozmowy telefonicznej,
+   - podczas spotkania online.</li>
+<li>Warunkiem przygotowania oferty jest przekazanie przez Klienta podstawowego briefu obejmującego co najmniej:
+   - charakter działalności,
+   - cel realizacji,
+   - planowaną liczbę materiałów,
+   - preferowany termin,
+   - miejsce realizacji.</li>
+<li>Rezerwacja terminu oznacza zablokowanie czasu przeznaczonego na:
+   - przygotowanie projektu,
+   - analizę briefu,
+   - przygotowanie scenariuszy,
+   - organizację realizacji,
+   - wykonanie zdjęć,
+   - montaż materiałów.</li>
+<li>W przypadku realizacji ekspresowych Wykonawca nie gwarantuje możliwości przygotowania pełnej koncepcji kreatywnej, scenariuszy, rekwizytów, modeli ani lokalizacji.</li>
+<li>Ostateczne potwierdzenie współpracy następuje po zaakceptowaniu oferty przez Klienta.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-3">
+  <div class="reg-section-head">
+    <span class="reg-num">§3</span>
+    <h2>Oferta i zawarcie współpracy</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Każda realizacja poprzedzona jest przygotowaniem indywidualnej oferty.</li>
+<li>Oferta określa w szczególności:
+   - zakres realizacji,
+   - liczbę materiałów,
+   - terminy,
+   - miejsce realizacji,
+   - wynagrodzenie,
+   - dodatkowe koszty,
+   - liczbę rund poprawek,
+   - termin przekazania materiałów.</li>
+<li>Oferta ma charakter informacyjny i nie stanowi umowy w rozumieniu przepisów Kodeksu cywilnego.</li>
+<li>Na podstawie zaakceptowanej oferty Strony zawierają umowę.</li>
+<li>W przypadku stałych Klientów dopuszcza się potwierdzenie współpracy w formie dokumentowej, w szczególności poprzez wiadomość e-mail.</li>
+<li>Zakres prac określony w ofercie jest wiążący i stanowi podstawę wyceny.</li>
+<li>Wszelkie zmiany zakresu po zaakceptowaniu oferty traktowane są jako dodatkowe prace i podlegają odrębnej wycenie.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-4">
+  <div class="reg-section-head">
+    <span class="reg-num">§4</span>
+    <h2>Organizacja projektu</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Wykonawca planuje realizację projektu na podstawie informacji przekazanych przez Klienta.</li>
+<li>Klient zobowiązuje się do przekazania wszystkich informacji mających wpływ na realizację projektu przed rozpoczęciem zdjęć.</li>
+<li>W szczególności Klient przekazuje:
+   - listę produktów,
+   - priorytety nagrań,
+   - informacje dotyczące promocji,
+   - wytyczne dotyczące komunikacji marki,
+   - materiały referencyjne (jeżeli występują).</li>
+<li>Brak przekazania informacji przed rozpoczęciem realizacji może wpłynąć na ostateczny wygląd materiałów i nie stanowi podstawy reklamacji.</li>
+<li>W przypadku zmiany briefu po rozpoczęciu przygotowań Wykonawca może:
+   - zmienić termin realizacji,
+   - dokonać ponownej wyceny,
+   - odmówić realizacji nowych założeń w ramach wcześniej ustalonego wynagrodzenia.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-5">
+  <div class="reg-section-head">
+    <span class="reg-num">§5</span>
+    <h2>Obowiązki Klienta</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Klient zobowiązuje się zapewnić warunki umożliwiające prawidłową realizację usługi.</li>
+<li>Do obowiązków Klienta należy w szczególności:
+   - przygotowanie lokalu,
+   - przygotowanie produktów,
+   - przygotowanie personelu,
+   - zapewnienie dostępu do pomieszczeń,
+   - zapewnienie możliwości wykonywania zdjęć.</li>
+<li>Klient odpowiada za uzyskanie wszelkich zgód dotyczących:
+   - wykorzystania wizerunku pracowników,
+   - wykorzystania wizerunku klientów,
+   - wykorzystania znaków towarowych,
+   - wykorzystania materiałów przekazanych Wykonawcy.</li>
+<li>W przypadku braku wymaganych zgód pełną odpowiedzialność ponosi Klient.</li>
+<li>Opóźnienia wynikające z organizacji po stronie Klienta powodują odpowiednie wydłużenie czasu realizacji lub ograniczenie liczby wykonanych materiałów.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-6">
+  <div class="reg-section-head">
+    <span class="reg-num">§6</span>
+    <h2>Organizacja dnia zdjęciowego</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Dzień zdjęciowy realizowany jest zgodnie z harmonogramem określonym w Ofercie lub Umowie.</li>
+<li>Zarezerwowany czas obejmuje nie tylko wykonywanie nagrań i zdjęć, ale również:
+   - przygotowanie stanowiska pracy,
+   - ustawienie sprzętu,
+   - zmianę planów zdjęciowych,
+   - zmianę obiektywów i konfiguracji sprzętu,
+   - przygotowanie produktów,
+   - ustawienie oświetlenia,
+   - testy techniczne,
+   - organizację ujęć.</li>
+<li>Czas przeznaczony na przygotowanie produktów, zmianę aranżacji, oczekiwanie na personel lub przygotowanie lokalu wlicza się do czasu realizacji.</li>
+<li>W przypadku zakończenia realizacji przed upływem zarezerwowanego czasu wynagrodzenie nie ulega zmianie.</li>
+<li>Cena usługi obejmuje rezerwację terminu, organizację pracy oraz przygotowanie projektu, a nie wyłącznie faktyczny czas nagrywania.</li>
+<li>W przypadku gdy wykonanie wszystkich materiałów okaże się niemożliwe z przyczyn leżących po stronie Klienta (np. brak przygotowanych produktów, brak personelu, brak dostępu do pomieszczeń), Wykonawca realizuje materiały zgodnie z ustalonymi priorytetami.</li>
+<li>W przypadku gdy z przyczyn leżących po stronie Wykonawcy nie zostanie wykonany pełny zakres materiałów, Klientowi przysługuje proporcjonalne obniżenie wynagrodzenia.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-7">
+  <div class="reg-section-head">
+    <span class="reg-num">§7</span>
+    <h2>Priorytety realizacji</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Przed rozpoczęciem zdjęć Klient wskazuje materiały o najwyższym priorytecie.</li>
+<li>W przypadku ograniczeń czasowych w pierwszej kolejności realizowane są materiały oznaczone jako priorytetowe.</li>
+<li>Jeżeli Klient nie określi priorytetów, kolejność realizacji ustala Wykonawca według własnego doświadczenia.</li>
+<li>Brak możliwości wykonania wszystkich materiałów wynikający z decyzji Klienta lub organizacji dnia zdjęciowego nie stanowi podstawy do reklamacji.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-8">
+  <div class="reg-section-head">
+    <span class="reg-num">§8</span>
+    <h2>Zmiana briefu</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Brief zaakceptowany przed rozpoczęciem realizacji stanowi podstawę wykonania usługi.</li>
+<li>Za zmianę briefu uznaje się w szczególności:
+   - zmianę rodzaju materiałów,
+   - zmianę celu materiałów,
+   - zmianę scenariusza,
+   - zmianę stylu realizacji,
+   - dodanie nowych produktów,
+   - dodanie nowych usług,
+   - zmianę miejsca realizacji,
+   - zmianę grupy odbiorców.</li>
+<li>Każda zmiana briefu po rozpoczęciu przygotowań może skutkować:
+   - zmianą terminu realizacji,
+   - zmianą harmonogramu,
+   - zmianą wynagrodzenia.</li>
+<li>Wykonawca ma prawo odmówić realizacji zmian wykraczających poza zaakceptowany zakres.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-9">
+  <div class="reg-section-head">
+    <span class="reg-num">§9</span>
+    <h2>Dodatkowy zakres prac</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Wszelkie prace niewskazane w Ofercie lub Umowie traktowane są jako prace dodatkowe.</li>
+<li>Dotyczy to w szczególności:
+   - dodatkowych godzin zdjęciowych,
+   - dodatkowych materiałów video,
+   - dodatkowych zdjęć,
+   - dodatkowych wersji montażowych,
+   - dodatkowych scenariuszy,
+   - nowych koncepcji kreatywnych,
+   - napisów w dodatkowych językach,
+   - animacji,
+   - voice-over,
+   - grafik,
+   - miniaturek,
+   - eksportów w nowych formatach.</li>
+<li>Dodatkowy zakres realizowany jest wyłącznie po zaakceptowaniu wyceny przez Klienta.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-10">
+  <div class="reg-section-head">
+    <span class="reg-num">§10</span>
+    <h2>Czas realizacji</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Standardowy termin przekazania materiałów wynosi do <strong>14 dni roboczych</strong>.</li>
+<li>Termin liczony jest od dnia:
+   - zakończenia zdjęć,
+   - przekazania wszystkich materiałów przez Klienta,
+   - uzyskania wszystkich wymaganych akceptacji.</li>
+<li>W przypadku realizacji ekspresowej obowiązują następujące dopłaty:
+   - do 7 dni roboczych — <strong>20% wartości zamówienia</strong>,
+   - do 3 dni roboczych — <strong>30% wartości zamówienia</strong>.</li>
+<li>W przypadku braku odpowiedzi Klienta termin realizacji ulega automatycznemu wydłużeniu o okres oczekiwania.</li>
+<li>Termin realizacji nie obejmuje czasu przeznaczonego na poprawki.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-11">
+  <div class="reg-section-head">
+    <span class="reg-num">§11</span>
+    <h2>Komunikacja</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Kontakt roboczy odbywa się wyłącznie od poniedziałku do piątku w godzinach <strong>10:00–18:00</strong>.</li>
+<li>Maksymalny czas odpowiedzi wynosi <strong>5 dni roboczych</strong>.</li>
+<li>Wiadomości wysłane poza godzinami pracy traktowane są jako doręczone następnego dnia roboczego.</li>
+<li>Wykonawca nie jest zobowiązany do pozostawania w stałej dyspozycji Klienta.</li>
+<li>Kontakt telefoniczny odbywa się wyłącznie po wcześniejszym uzgodnieniu.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-12">
+  <div class="reg-section-head">
+    <span class="reg-num">§12</span>
+    <h2>Siła wyższa</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Wykonawca nie ponosi odpowiedzialności za opóźnienia wynikające z okoliczności, których nie mógł przewidzieć ani im zapobiec.</li>
+<li>Za siłę wyższą uznaje się w szczególności:
+   - chorobę,
+   - hospitalizację,
+   - wypadek,
+   - kolizję drogową,
+   - awarię sprzętu,
+   - kradzież sprzętu,
+   - pożar,
+   - powódź,
+   - przerwy w dostawie energii elektrycznej,
+   - awarie Internetu,
+   - decyzje organów administracji,
+   - zamknięcie obiektu,
+   - ekstremalne warunki atmosferyczne.</li>
+<li>W takim przypadku termin realizacji zostaje odpowiednio wydłużony o czas trwania przeszkody oraz czas niezbędny do wznowienia realizacji.</li>
+<li>Wykonawca zobowiązuje się niezwłocznie poinformować Klienta o wystąpieniu okoliczności wskazanych w ust. 2.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-13">
+  <div class="reg-section-head">
+    <span class="reg-num">§13</span>
+    <h2>Materiały źródłowe (RAW)</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Przedmiotem usługi jest wyłącznie przekazanie gotowych materiałów wskazanych w Ofercie lub Umowie.</li>
+<li>Materiały źródłowe (RAW), pliki projektowe, pliki robocze, cache, proxy, timeline montażowy, duble, niewykorzystane ujęcia oraz wszelkie materiały pośrednie nie stanowią przedmiotu zamówienia.</li>
+<li>Przekazanie materiałów RAW może nastąpić wyłącznie po wcześniejszym uzgodnieniu Stron oraz za dodatkowym wynagrodzeniem ustalonym indywidualnie.</li>
+<li>Wykonawca nie ma obowiązku archiwizowania ani przechowywania materiałów źródłowych po upływie okresu wskazanego w niniejszym Regulaminie.</li>
+<li>Klient nie nabywa żadnych praw do plików projektowych, presetów, szablonów, ustawień kolorystycznych ani procesu montażowego wykorzystywanego przez Wykonawcę.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-14">
+  <div class="reg-section-head">
+    <span class="reg-num">§14</span>
+    <h2>Montaż materiałów</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Montaż wykonywany jest zgodnie z zaakceptowaną koncepcją, scenariuszem oraz charakterem marki Klienta.</li>
+<li>Wykonawca samodzielnie podejmuje decyzje dotyczące (o ile Strony nie ustaliły inaczej):
+   - selekcji ujęć,
+   - kadrowania,
+   - tempa montażu,
+   - korekcji kolorystycznej,
+   - doboru muzyki,
+   - przejść,
+   - efektów wizualnych,
+   - sposobu narracji.</li>
+<li>Jeżeli Klient nie dostarczy szczegółowych wytycznych przed rozpoczęciem montażu, Wykonawca realizuje projekt zgodnie ze swoim doświadczeniem i estetyką.</li>
+<li>Montaż obejmuje wyłącznie zakres określony w Umowie.</li>
+<li>Każda dodatkowa wersja filmu stanowi nową usługę.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-15">
+  <div class="reg-section-head">
+    <span class="reg-num">§15</span>
+    <h2>Poprawki</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>W cenę usługi wliczone są <strong>2 rundy poprawek</strong>, o ile Umowa nie stanowi inaczej.</li>
+<li>Jedna runda oznacza jedną kompletną listę uwag przekazaną jednorazowo.</li>
+<li>Uwagi przesyłane etapami, w wielu wiadomościach lub przez kilka osób mogą zostać potraktowane jako kolejne rundy poprawek.</li>
+<li>Poprawki należy zgłosić w terminie <strong>7 dni roboczych</strong> od dnia otrzymania materiałów.</li>
+<li>Termin realizacji poprawek wynosi <strong>do 14 dni kalendarzowych</strong>, przy czym każdorazowo ustalany jest indywidualnie z uwzględnieniem aktualnego harmonogramu Wykonawcy.</li>
+<li>Poprawką nie jest w szczególności:
+   - zmiana koncepcji,
+   - zmiana scenariusza,
+   - zmiana celu filmu,
+   - wymiana większości ujęć,
+   - ponowny montaż od podstaw,
+   - dodanie nowych scen,
+   - przygotowanie nowego filmu.</li>
+<li>Każda kolejna runda poprawek podlega indywidualnej wycenie.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-16">
+  <div class="reg-section-head">
+    <span class="reg-num">§16</span>
+    <h2>Akceptacja materiałów</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Materiały przekazywane są Klientowi do akceptacji drogą elektroniczną.</li>
+<li>Klient zobowiązuje się zgłosić wszystkie uwagi w terminie określonym w §15.</li>
+<li>Brak odpowiedzi w wyznaczonym terminie oznacza pełną akceptację materiałów.</li>
+<li>Po akceptacji materiałów projekt uznaje się za zakończony.</li>
+<li>Po zakończeniu projektu wszelkie kolejne zmiany traktowane są jako nowa usługa.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-17">
+  <div class="reg-section-head">
+    <span class="reg-num">§17</span>
+    <h2>Archiwizacja</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Gotowe materiały przechowywane są przez okres <strong>2 miesięcy</strong> od dnia ich przekazania.</li>
+<li>Po upływie tego terminu Wykonawca ma prawo trwale usunąć wszystkie pliki.</li>
+<li>Wykonawca nie ma obowiązku przypominania Klientowi o pobraniu materiałów.</li>
+<li>Ponowne udostępnienie materiałów po ich usunięciu nie jest gwarantowane.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-18">
+  <div class="reg-section-head">
+    <span class="reg-num">§18</span>
+    <h2>Dodatkowe materiały</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Jeżeli podczas realizacji powstanie większa liczba udanych materiałów niż przewidziano w Umowie, Klient może otrzymać ich podgląd.</li>
+<li>Materiały dodatkowe udostępniane są wyłącznie z watermarkiem.</li>
+<li>Klient może wykupić dodatkowe materiały zgodnie z aktualnym cennikiem.</li>
+<li>Zakup dodatkowych materiałów nie wpływa na termin realizacji podstawowego zamówienia.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-19">
+  <div class="reg-section-head">
+    <span class="reg-num">§19</span>
+    <h2>Prawa autorskie</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Autorskie prawa osobiste do wszystkich wykonanych materiałów pozostają przy Wykonawcy.</li>
+<li>Po opłaceniu pełnego wynagrodzenia Klient otrzymuje niewyłączną licencję na korzystanie z materiałów finalnych.</li>
+<li>Licencja obejmuje:
+   - publikację w mediach społecznościowych,
+   - wykorzystanie na stronie internetowej,
+   - wykorzystanie w materiałach reklamowych,
+   - wykorzystanie w kampaniach marketingowych.</li>
+<li>Licencja nie obejmuje prawa do:
+   - sprzedaży materiałów,
+   - przekazywania ich innym podmiotom,
+   - odsprzedaży,
+   - wykorzystania jako produktu komercyjnego,
+   - przekazywania do dalszego montażu osobom trzecim.</li>
+<li>Scenariusze, koncepcje kreatywne, sposób montażu, pliki projektowe, szablony oraz know-how pozostają własnością Wykonawcy.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-20">
+  <div class="reg-section-head">
+    <span class="reg-num">§20</span>
+    <h2>Portfolio</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Wykonawca ma prawo wykorzystać wykonane materiały w:
+   - portfolio,
+   - mediach społecznościowych,
+   - materiałach promocyjnych,
+   - prezentacjach handlowych,
+   - stronie internetowej.</li>
+<li>Jeżeli Klient nie wyraża zgody na publikację materiałów, zobowiązany jest poinformować o tym przed rozpoczęciem realizacji.</li>
+<li>Brak zgłoszenia sprzeciwu oznacza zgodę na wykorzystanie materiałów wyłącznie w celu promocji działalności Wykonawcy.</li>
+<li>Wykonawca zobowiązuje się nie wykorzystywać materiałów w sposób naruszający dobre imię Klienta ani ujawniający informacje poufne.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-21">
+  <div class="reg-section-head">
+    <span class="reg-num">§21</span>
+    <h2>Wynagrodzenie i płatności</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Wynagrodzenie za realizację usługi określone jest każdorazowo w Umowie.</li>
+<li>Wszystkie ceny podawane są w złotych polskich (PLN). Jeżeli Wykonawca jest zobowiązany do naliczenia podatku VAT zgodnie z obowiązującymi przepisami, zostanie on doliczony do ceny.</li>
+<li>Faktura wystawiana jest po zakończeniu dnia zdjęciowego, chyba że Strony uzgodnią inny sposób rozliczenia.</li>
+<li>Termin płatności wynosi <strong>7 dni kalendarzowych</strong> od dnia wystawienia faktury.</li>
+<li>Za dzień zapłaty uznaje się dzień uznania rachunku bankowego Wykonawcy.</li>
+<li>Do momentu zaksięgowania pełnej płatności:
+   - gotowe materiały mogą zostać przekazane wyłącznie z watermarkiem,
+   - dostęp do materiałów finalnych może zostać wstrzymany,
+   - licencja na korzystanie z materiałów nie zostaje udzielona.</li>
+<li>Usunięcie watermarka oraz przekazanie finalnych materiałów następuje po otrzymaniu pełnej płatności.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-22">
+  <div class="reg-section-head">
+    <span class="reg-num">§22</span>
+    <h2>Pakiety i wyceny indywidualne</h2>
+  </div>
+  <div class="reg-body">
+    <h3>Pakiety</h3>
+<ol>
+<li>Pakiety mają charakter ryczałtowy.</li>
+<li>Cena pakietu obejmuje cały proces realizacji, w szczególności:
+   - przygotowanie projektu,
+   - konsultacje,
+   - organizację,
+   - dzień zdjęciowy,
+   - montaż,
+   - poprawki,
+   - przekazanie materiałów.</li>
+<li>Rezygnacja z części materiałów po rozpoczęciu realizacji nie wpływa na cenę pakietu.</li>
+<li>Niewykorzystanie przez Klienta części materiałów również nie wpływa na wysokość wynagrodzenia.</li>
+</ol>
+<h3>Wyceny indywidualne</h3>
+<ol>
+<li>W przypadku realizacji wycenianych indywidualnie zakres prac ustalany jest przed rozpoczęciem realizacji.</li>
+<li>Zmiana liczby materiałów po zaakceptowaniu Oferty nie powoduje automatycznej zmiany ceny.</li>
+<li>Jeżeli z przyczyn leżących po stronie Wykonawcy nie zostanie wykonany uzgodniony zakres materiałów, Klientowi przysługuje:
+   - wykonanie brakujących materiałów w dodatkowym terminie, albo
+   - proporcjonalne obniżenie wynagrodzenia.</li>
+<li>Jeżeli ograniczenie zakresu wynika z decyzji Klienta, wynagrodzenie pozostaje bez zmian.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-23">
+  <div class="reg-section-head">
+    <span class="reg-num">§23</span>
+    <h2>Rezultat usługi (KPI)</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Przedmiotem usługi jest przygotowanie materiałów foto i wideo zgodnie z zaakceptowaną Ofertą.</li>
+<li>Za prawidłowo wykonaną usługę uznaje się:
+   - wykonanie uzgodnionej liczby materiałów,
+   - zgodność materiałów z zaakceptowanym briefem,
+   - przekazanie materiałów w uzgodnionym terminie,
+   - zachowanie jakości technicznej umożliwiającej ich publikację.</li>
+<li>Wykonawca nie świadczy usług gwarantujących rezultaty marketingowe.</li>
+<li>W szczególności Wykonawca nie gwarantuje:
+   - liczby wyświetleń,
+   - liczby obserwujących,
+   - zasięgów,
+   - sprzedaży,
+   - liczby klientów,
+   - skuteczności reklam,
+   - pozycji w algorytmach platform społecznościowych.</li>
+<li>Wyniki publikacji zależą od wielu czynników niezależnych od Wykonawcy, w szczególności:
+   - jakości oferty Klienta,
+   - sposobu prowadzenia profilu,
+   - budżetu reklamowego,
+   - sezonowości,
+   - konkurencji,
+   - zmian algorytmów platform społecznościowych.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-24">
+  <div class="reg-section-head">
+    <span class="reg-num">§24</span>
+    <h2>Reklamacje</h2>
+  </div>
+  <div class="reg-body">
+    <blockquote>
+<p>Перенумеровано послідовно (в оригіналі було 1, 2, 4, 5, 6, 7, 8 — пропущено п.3, ймовірно технічна помилка при копіюванні з Notion).</p>
+</blockquote>
+<ol>
+<li>Reklamacje dotyczące wykonanej usługi należy zgłosić w terminie <strong>14 dni</strong> od dnia przekazania materiałów.</li>
+<li>Klient zgłasza reklamację w formie dokumentowej, opisując konkretną wadę, materiał, którego dotyczy, oraz oczekiwany sposób usunięcia. Reklamacje ogólne, oparte wyłącznie na subiektywnej zmianie gustu lub koncepcji, nie stanowią wady.</li>
+<li>W razie uzasadnionej reklamacji Wykonawca ma prawo w pierwszej kolejności usunąć wadę, ponownie wyeksportować materiał lub zaproponować rozwiązanie równoważne.</li>
+<li>Jeżeli w wyniku uzasadnionej reklamacji Strony uzgodnią zwrot części wynagrodzenia, zwrot może dotyczyć wyłącznie niewykonanej albo wadliwie wykonanej części usługi montażu. Koszty przygotowania i organizacji realizacji, opracowania scenariuszy, rezerwacji terminu, dojazdu, opłaty wyjazdowej oraz przeprowadzonej sesji nagraniowej nie podlegają zwrotowi, ponieważ odpowiadają czynnościom faktycznie wykonanym i poniesionym nakładom. W każdym przypadku łączna wysokość zwrotu lub obniżenia wynagrodzenia nie może przekroczyć 50% całkowitej kwoty zamówienia, z wyjątkiem szkody wyrządzonej umyślnie oraz przypadków, w których bezwzględnie obowiązujące przepisy prawa stanowią inaczej.</li>
+<li>Wykonawca nie odpowiada za:
+   - działanie lub regulaminy platform internetowych, blokady kont, usunięcie publikacji ani ograniczenie zasięgów;
+   - różnice kolorystyczne wynikające z ustawień ekranów, urządzeń i platform;
+   - utratę jakości po dalszej kompresji lub modyfikacji materiału przez Klienta albo osoby trzecie;
+   - błędy merytoryczne w informacjach przekazanych lub zatwierdzonych przez Klienta;
+   - brak zgód lub praw, za których uzyskanie odpowiada Klient;
+   - opóźnienia i szkody wywołane zdarzeniami niezależnymi od Wykonawcy.</li>
+<li>Z wyjątkiem szkody wyrządzonej umyślnie, łączna odpowiedzialność odszkodowawcza Wykonawcy związana z Umową jest ograniczona do wysokości wynagrodzenia netto faktycznie zapłaconego na podstawie Umowy. Ograniczenie nie ma zastosowania, jeżeli jego wyłączenie wynika z bezwzględnie obowiązujących przepisów.</li>
+<li>Wykonawca nie odpowiada za utracone korzyści, szkody pośrednie ani utratę przewidywan[…]</li>
+</ol>
+<p><strong>⚠️ Речення обірване в оригіналі — потребує доповнення перед публікацією.</strong></p>
+  </div>
+</section>
+
+<section class="reg-section" id="par-25">
+  <div class="reg-section-head">
+    <span class="reg-num">§25</span>
+    <h2>Odpowiedzialność</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Wykonawca odpowiada za wykonanie usługi z należytą starannością zawodową.</li>
+<li>Wykonawca nie ponosi odpowiedzialności za szkody wynikające z:
+   - błędnych informacji przekazanych przez Klienta,
+   - braku wymaganych zgód,
+   - działań osób trzecich,
+   - awarii platform społecznościowych,
+   - zmian algorytmów,
+   - nieprawidłowego wykorzystania materiałów przez Klienta.</li>
+</ol>
+  </div>
+</section>
+
+<section class="reg-section" id="par-26">
+  <div class="reg-section-head">
+    <span class="reg-num">§26</span>
+    <h2>Poufność i RODO</h2>
+  </div>
+  <div class="reg-body">
+    <ol>
+<li>Strony zobowiązują się do zachowania poufności wszelkich informacji handlowych, organizacyjnych i finansowych uzyskanych w trakcie współpracy.</li>
+<li>Obowiązek poufności obowiązuje również po zakończeniu współpracy.</li>
+<li>Dane osobowe przetwarzane są wyłącznie w zakresie niezbędnym do realizacji współpracy zgodnie z Rozporządzeniem Parlamentu Europejskiego i Rady (UE) 2016/679 (RODO).</li>
+<li>Każda ze Stron pozostaje odrębnym administratorem danych osobowych przekazywanych drugiej Stronie.</li>
+</ol>
+  </div>
+</section>
+
+  </main>
+
+</div>
+
+<button class="back-top" id="backTop" aria-label="Wróć na górę">↑</button>
+
+<script>
+  // Scroll progress + active TOC highlight
+  const sections = Array.from(document.querySelectorAll('.reg-section'));
+  const tocLinks = Array.from(document.querySelectorAll('#tocList a'));
+  const ruleFill = document.getElementById('ruleFill');
+  const backTop = document.getElementById('backTop');
+
+  function onScroll(){
+    const doc = document.documentElement;
+    const scrollTop = doc.scrollTop || document.body.scrollTop;
+    const scrollHeight = doc.scrollHeight - doc.clientHeight;
+    const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) * 100 : 0;
+    ruleFill.style.height = progress + '%';
+
+    backTop.classList.toggle('visible', scrollTop > 600);
+
+    let currentId = sections[0] && sections[0].id;
+    for (const sec of sections){
+      const rect = sec.getBoundingClientRect();
+      if (rect.top <= 140){
+        currentId = sec.id;
+      }
+    }
+    tocLinks.forEach(a => {
+      a.classList.toggle('active', a.dataset.target === currentId);
+    });
+  }
+
+  document.addEventListener('scroll', onScroll, {passive:true});
+  onScroll();
+
+  backTop.addEventListener('click', () => {
+    window.scrollTo({top:0, behavior:'smooth'});
+  });
+
+  // Mobile TOC toggle
+  const tocToggle = document.getElementById('tocToggle');
+  const sidebar = document.getElementById('sidebar');
+  tocToggle.addEventListener('click', () => {
+    sidebar.classList.toggle('open');
+    tocToggle.textContent = sidebar.classList.contains('open') ? 'Zamknij' : 'Spis treści';
+  });
+  tocLinks.forEach(a => a.addEventListener('click', () => {
+    sidebar.classList.remove('open');
+    tocToggle.textContent = 'Spis treści';
+  }));
+</script>
+
+</body>
+</html>

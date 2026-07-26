@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jak przebiega współpraca — Blog — Ewa Wierzba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF7F1; --bg-alt:#F2ECDF; --panel:#FFFFFF;
+    --ink:#171512; --ink-soft:#544F45; --ink-faint:#8D8778;
+    --accent:#D4291B; --line:#E3DCC9; --line-strong:#D0C6AC;
+    --radius:3px; --maxw:1180px; --maxw-article:680px;
+  }
+  *{box-sizing:border-box;}
+  body{margin:0; background:var(--bg); color:var(--ink); font-family:'Inter', sans-serif; font-size:16px; line-height:1.7; -webkit-font-smoothing:antialiased;}
+  a{color:inherit; text-decoration:none;}
+
+  .topnav{position:sticky; top:0; z-index:50; background:rgba(250,247,241,0.94); backdrop-filter:blur(6px); border-bottom:1px solid var(--line);}
+  .topnav-inner{max-width:var(--maxw); margin:0 auto; padding:16px 24px; display:flex; align-items:center; justify-content:space-between;}
+  .topnav-brand{font-family:'Anton', sans-serif; font-size:18px;}
+  .back-link{font-family:'IBM Plex Mono', monospace; font-size:13px; color:var(--ink-soft);}
+  .back-link:hover{color:var(--accent);}
+
+  .article-hero{max-width:var(--maxw-article); margin:0 auto; padding:56px 24px 0;}
+  .post-tags{display:flex; gap:6px; margin-bottom:18px;}
+  .post-tag{font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; letter-spacing:0.03em; color:var(--accent); background:#FBEBE8; padding:3px 9px; border-radius:12px;}
+  .article-hero h1{font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; font-size:clamp(30px,5vw,46px); line-height:1.05; margin:0 0 20px;}
+  .article-lede{font-size:18px; color:var(--ink-soft); margin:0 0 8px;}
+  .article-lede em{font-style:italic;}
+  .article-meta{font-family:'IBM Plex Mono', monospace; font-size:12px; color:var(--ink-faint); margin:24px 0 40px;}
+
+  .hero-media{aspect-ratio:16/9; background:#0A0A0A; border-radius:var(--radius); max-width:var(--maxw); margin:0 auto 56px; position:relative;}
+  .hero-media::after{content:"▸ miejsce na zdjęcie/wideo do artykułu"; position:absolute; bottom:20px; left:20px; font-family:'IBM Plex Mono', monospace; font-size:12px; color:rgba(255,255,255,0.45);}
+
+  .article-body{max-width:var(--maxw-article); margin:0 auto; padding:0 24px 60px;}
+
+  .step-block{margin:52px 0; padding-top:36px; border-top:1px solid var(--line);}
+  .step-block:first-child{margin-top:0; padding-top:0; border-top:none;}
+  .step-number{
+    font-family:'Anton', sans-serif; font-size:14px; color:var(--ink-faint);
+    border:2px solid var(--line-strong); border-radius:50%;
+    width:38px; height:38px; display:flex; align-items:center; justify-content:center;
+    margin-bottom:16px;
+  }
+  .step-block h2{font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; font-size:24px; margin:0 0 8px;}
+  .step-tagline{font-style:italic; color:var(--ink-soft); margin:0 0 18px;}
+  .step-body p{margin:0 0 14px;}
+  .step-body strong{color:var(--ink);}
+  .step-body em{color:var(--ink); font-style:italic;}
+
+  .checklist-box{
+    margin-top:24px; padding:20px 22px; background:var(--panel);
+    border:1px solid var(--line); border-radius:var(--radius);
+  }
+  .checklist-label{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--accent); margin-bottom:14px; font-weight:500;
+  }
+  .checklist-item{display:flex; align-items:flex-start; gap:10px; padding:7px 0; font-size:15px;}
+  .checklist-item input[type=checkbox]{
+    margin-top:3px; width:16px; height:16px; accent-color:var(--accent); flex:0 0 auto; cursor:pointer;
+  }
+  .checklist-item label{cursor:pointer;}
+  .checklist-item input:checked + label{color:var(--ink-faint); text-decoration:line-through;}
+
+  .aside-note{
+    display:flex; gap:14px; margin:44px 0;
+    padding:20px 22px; background:#FBEBE8; border-left:3px solid var(--accent); border-radius:var(--radius);
+  }
+  .aside-note-emoji{font-size:20px;}
+  .aside-note p{margin:0; color:var(--ink); font-style:italic;}
+
+  .closing-block{max-width:var(--maxw-article); margin:0 auto; padding:0 24px 70px;}
+  .closing-block p{margin:0 0 14px; font-size:16.5px;}
+  .closing-block p:last-child{font-weight:700;}
+
+  /* ---------- Related (cross-linking per plan strony) ---------- */
+  .related-section{max-width:var(--maxw); margin:0 auto; padding:60px 24px 100px; border-top:1px solid var(--line);}
+  .related-heading{font-family:'IBM Plex Mono', monospace; font-size:12px; text-transform:uppercase; letter-spacing:0.06em; color:var(--ink-faint); margin-bottom:24px;}
+  .related-grid{display:grid; grid-template-columns:repeat(auto-fit, minmax(240px,1fr)); gap:18px;}
+  .related-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    padding:22px; transition:border-color .15s, transform .15s;
+  }
+  .related-card:hover{border-color:var(--accent); transform:translateY(-2px);}
+  .related-kind{font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase; color:var(--accent); margin-bottom:8px;}
+  .related-title{font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; font-size:16px;}
+
+  .article-cta{background:var(--ink); color:var(--bg); text-align:center; padding:64px 24px;}
+  .article-cta-title{font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; font-size:clamp(24px,4vw,38px); margin:0 0 24px;}
+  .article-cta-button{display:inline-block; background:var(--bg); color:var(--ink); font-weight:600; padding:15px 32px; border-radius:40px;}
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="topnav-brand">EWA WIERZBA</div>
+    <a class="back-link" href="blog.html">← Wróć do Blog</a>
+  </div>
+</nav>
+
+<!--
+==============================================================================
+SZABLON ARTYKUŁU BLOGOWEGO — dynamiczny route /app/blog/[slug]/page.tsx w Next.js.
+Treść poniżej to prawdziwy artykuł "Jak przebiega współpraca" (przeniesiony
+1:1 z Notion), pełni funkcję pierwszego realnego posta.
+
+CROSS-LINKING (zgodnie z planem strony w Notion, sekcja "Q\A"/"Сайт"):
+Każdy artykuł na dole ma sekcję "Powiązane" — link do Q&A, do przykładowego
+kejsu z portfolio i do oferty. Tak jeden artykuł prowadzi czytelnika dalej,
+zamiast kończyć się na samym czytaniu.
+==============================================================================
+-->
+
+<header class="article-hero">
+  <div class="post-tags"><span class="post-tag">Proces współpracy</span></div>
+  <h1>Jak przebiega współpraca</h1>
+  <p class="article-lede"><em>Żeby nie było chaosu, niedomówień i „a ja myślałem, że…".</em></p>
+  <p class="article-lede"><em>Masz jasny proces, konkretne etapy i przewidywalny rezultat.</em></p>
+  <div class="article-meta">5 min czytania</div>
+</header>
+
+<div class="hero-media"></div>
+
+<article class="article-body">
+
+  <div class="step-block">
+    <div class="step-number">01</div>
+    <h2>Start</h2>
+    <div class="step-body">
+      <p>Najpierw rozumiemy, po co to robimy.</p>
+      <p>Rozmawiamy o Twoim projekcie, <strong>celu i oczekiwaniach</strong>. Ustalamy, co dokładnie tworzymy, w jakim stylu i gdzie to będzie używane.</p>
+      <p>Na tym etapie dostajesz:</p>
+      <p>– kierunek wizualny<br>– wstępny pomysł / koncept<br>– zakres pracy<br>– wycenę i termin</p>
+      <p>Po akceptacji podpisujemy umowę i rezerwujemy termin.</p>
+    </div>
+    <div class="checklist-box">
+      <div class="checklist-label">Checklista dla Ciebie</div>
+      <div class="checklist-item"><input type="checkbox" id="c1-1"><label for="c1-1">Opisz swój projekt (co robisz, dla kogo, jaki cel)</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c1-2"><label for="c1-2">Podeślij przykłady, które Ci się podobają (jeśli masz)</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c1-3"><label for="c1-3">Określ, gdzie materiał będzie publikowany (IG / TikTok / strona itd.)</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c1-4"><label for="c1-4">Zarezerwuj czas na zdjęcia</label></div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">02</div>
+    <h2>Koncepcja i plan</h2>
+    <div class="step-body">
+      <p>Tutaj powstaje fundament.</p>
+      <p>Rozpisuję <em>pomysł</em>, strukturę materiału i przebieg nagrań. Jeśli trzeba — pomagam dobrać stylizacje, lokalizację, klimat.</p>
+      <p>Wiesz dokładnie: co robimy, gdzie, kiedy i po co.</p>
+    </div>
+    <div class="checklist-box">
+      <div class="checklist-label">Checklista dla Ciebie</div>
+      <div class="checklist-item"><input type="checkbox" id="c2-0"><label for="c2-0">Zatwierdź koncept</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c2-1"><label for="c2-1">Przygotuj ubrania / produkty / przestrzeń</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c2-2"><label for="c2-2">Ustal szczegóły logistyczne (adres, godzina, dostęp)</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c2-3"><label for="c2-3">Przygotuj się mentalnie — bez stresu, poprowadzę Cię</label></div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">03</div>
+    <h2>Realizacja (zdjęcia / nagrania)</h2>
+    <div class="step-body">
+      <p>Tu wszystko dzieje się w praktyce.</p>
+      <p>Prowadzę Cię <em>przez cały proces</em>: ustawienie, ruch, emocje, tempo. Dbam o światło, kadry i detale, żeby materiał był spójny i jakościowy już na etapie nagrania.</p>
+      <p>Nie musisz wiedzieć, co robić — to moja rola.</p>
+    </div>
+    <div class="checklist-box">
+      <div class="checklist-label">Checklista dla Ciebie</div>
+      <div class="checklist-item"><input type="checkbox" id="c3-1"><label for="c3-1">Bądź na czas</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c3-2"><label for="c3-2">Zaufaj procesowi</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c3-3"><label for="c3-3">Nie analizuj każdego ujęcia — robimy to razem</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c3-4"><label for="c3-4">Weź dobry humor (serio, to pomaga)</label></div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">04</div>
+    <h2>Postprodukcja</h2>
+    <div class="step-body">
+      <p>Tu materiał zaczyna żyć.</p>
+      <p>Montuję, układam tempo, dobieram dźwięk, robię kolor, dodaję napisy i elementy graficzne. Wszystko <em>dopasowane</em> do platformy i celu.</p>
+      <p>Dostajesz gotowy materiał — nie „surowy plik", tylko finalny produkt.</p>
+    </div>
+    <div class="checklist-box">
+      <div class="checklist-label">Checklista dla Ciebie</div>
+      <div class="checklist-item"><input type="checkbox" id="c4-1"><label for="c4-1">Poczekaj na pierwszą wersję</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c4-2"><label for="c4-2">Daj konkretny feedback w trakcie 3 dni</label></div>
+      <div class="checklist-item"><input type="checkbox" id="c4-3"><label for="c4-3">Zatwierdź final</label></div>
+    </div>
+  </div>
+
+  <div class="step-block">
+    <div class="step-number">05</div>
+    <h2>Final i oddanie</h2>
+    <div class="step-body">
+      <p>Otrzymujesz materiały gotowe do publikacji.</p>
+      <p>Formaty dopasowane do platform.</p>
+      <p>Jakość, która wygląda dobrze nie tylko na ekranie, ale też w oczach odbiorcy.</p>
+    </div>
+  </div>
+
+  <div class="aside-note">
+    <span class="aside-note-emoji">☝🏻</span>
+    <p>Nie robię projektów „na szybko, byle było".</p>
+  </div>
+
+  <div class="closing-block">
+    <p>Nie pracuję bez celu.</p>
+    <p>Nie zgaduję, czego chcesz — ustalamy to na początku.</p>
+    <p>Jeśli chcesz współpracy, w której jest <em>jasny proces</em>, odpowiedzialność i efekt, który ma sens — jesteśmy na dobrej drodze.</p>
+  </div>
+
+</article>
+
+<section class="related-section">
+  <div class="related-heading">Powiązane</div>
+  <div class="related-grid">
+    <a class="related-card" href="qa.html">
+      <div class="related-kind">Q&amp;A</div>
+      <div class="related-title">Jak zarezerwować termin?</div>
+    </a>
+    <a class="related-card" href="portfolio-case.html?slug=projekt-01">
+      <div class="related-kind">Kejs</div>
+      <div class="related-title">Projekt 01</div>
+    </a>
+    <a class="related-card" href="oferta.html#social">
+      <div class="related-kind">Usługa</div>
+      <div class="related-title">Tworzenie treści do social media</div>
+    </a>
+  </div>
+</section>
+
+<section class="article-cta">
+  <h2 class="article-cta-title">Gotowa/y na jasny proces?</h2>
+  <a class="article-cta-button" href="kontakt.html">Napisz do mnie →</a>
+</section>
+
+</body>
+</html>

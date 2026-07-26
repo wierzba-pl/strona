@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#FAF7F1;color:#171512;font-family:'IBM Plex Mono',monospace;font-size:16px;line-height:1.7;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+  .article-body p{margin:0 0 14px;}
+  .article-body strong{color:#171512;}
+  .article-body em{color:#171512;font-style:italic;}
+  .checklist-item input:checked + label{color:#8D8778;text-decoration:line-through;}
+</style>
+</helmet>
+
+<div style="background:#FAF7F1;color:#171512;">
+
+<nav style="position:sticky;top:0;z-index:50;background:rgba(250,247,241,0.94);backdrop-filter:blur(6px);border-bottom:1px solid #E3DCC9;">
+  <div style="max-width:1180px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;">
+    <a href="index.html" style="font-family:'Anton',sans-serif;font-size:18px;color:#171512;white-space:nowrap;">EWA WIERZBA</a>
+    <a href="blog.html" style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#544F45;">← Wróć do Blog</a>
+  </div>
+</nav>
+
+<header style="max-width:680px;margin:0 auto;padding:56px 24px 0;">
+  <div style="display:flex;gap:6px;margin-bottom:18px;">
+    <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;letter-spacing:0.03em;color:#D4291B;background:#FBEBE8;padding:3px 9px;border-radius:12px;">Proces współpracy</span>
+  </div>
+  <h1 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(30px,5vw,46px);line-height:1.05;margin:0 0 20px;">Jak przebiega współpraca</h1>
+  <p style="font-size:18px;color:#544F45;margin:0 0 8px;"><em>Żeby nie było chaosu, niedomówień i „a ja myślałem, że…".</em></p>
+  <p style="font-size:18px;color:#544F45;margin:0 0 8px;"><em>Masz jasny proces, konkretne etapy i przewidywalny rezultat.</em></p>
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D8778;margin:24px 0 40px;">5 min czytania</div>
+</header>
+
+<div style="aspect-ratio:16/9;background:#0A0A0A;border-radius:3px;max-width:1180px;margin:0 auto 56px;overflow:hidden;">
+  <img src="uploads/1_2.jpg" style="width:100%;height:100%;object-fit:cover;display:block;" alt="Jak przebiega współpraca"/>
+</div>
+
+<article class="article-body" style="max-width:680px;margin:0 auto;padding:0 24px 60px;">
+
+  <div style="margin:0;padding-top:0;border-top:none;">
+    <div style="font-family:'Anton',sans-serif;font-size:14px;color:#8D8778;border:2px solid #D0C6AC;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">01</div>
+    <h2 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:24px;margin:0 0 8px;">Start</h2>
+    <div>
+      <p>Najpierw rozumiemy, po co to robimy.</p>
+      <p>Rozmawiamy o Twoim projekcie, <strong>celu i oczekiwaniach</strong>. Ustalamy, co dokładnie tworzymy, w jakim stylu i gdzie to będzie używane.</p>
+      <p>Na tym etapie dostajesz:</p>
+      <p>– kierunek wizualny<br/>– wstępny pomysł / koncept<br/>– zakres pracy<br/>– wycenę i termin</p>
+      <p>Po akceptacji podpisujemy umowę i rezerwujemy termin.</p>
+    </div>
+    <div style="margin-top:24px;padding:20px 22px;background:#fff;border:1px solid #E3DCC9;border-radius:3px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#D4291B;margin-bottom:14px;font-weight:500;">Checklista dla Ciebie</div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c1-1" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c1-1" style="cursor:pointer;">Opisz swój projekt (co robisz, dla kogo, jaki cel)</label></div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c1-2" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c1-2" style="cursor:pointer;">Podeślij przykłady, które Ci się podobają (jeśli masz)</label></div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c1-3" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c1-3" style="cursor:pointer;">Określ, gdzie materiał będzie publikowany (IG / TikTok / strona itd.)</label></div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c1-4" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c1-4" style="cursor:pointer;">Zarezerwuj czas na zdjęcia</label></div>
+    </div>
+  </div>
+
+  <div style="margin:52px 0 0;padding-top:36px;border-top:1px solid #E3DCC9;">
+    <div style="font-family:'Anton',sans-serif;font-size:14px;color:#8D8778;border:2px solid #D0C6AC;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">02</div>
+    <h2 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:24px;margin:0 0 8px;">Koncepcja i plan</h2>
+    <div>
+      <p>Tutaj powstaje fundament.</p>
+      <p>Rozpisuję <em>pomysł</em>, strukturę materiału i przebieg nagrań. Jeśli trzeba — pomagam dobrać stylizacje, lokalizację, klimat.</p>
+      <p>Wiesz dokładnie: co robimy, gdzie, kiedy i po co.</p>
+    </div>
+    <div style="margin-top:24px;padding:20px 22px;background:#fff;border:1px solid #E3DCC9;border-radius:3px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#D4291B;margin-bottom:14px;font-weight:500;">Checklista dla Ciebie</div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c2-0" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c2-0" style="cursor:pointer;">Zatwierdź koncept</label></div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c2-1" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c2-1" style="cursor:pointer;">Przygotuj ubrania / produkty / przestrzeń</label></div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c2-2" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c2-2" style="cursor:pointer;">Ustal szczegóły logistyczne (adres, godzina, dostęp)</label></div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c2-3" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c2-3" style="cursor:pointer;">Przygotuj się mentalnie — bez stresu, poprowadzę Cię</label></div>
+    </div>
+  </div>
+
+  <div style="margin:52px 0 0;padding-top:36px;border-top:1px solid #E3DCC9;">
+    <div style="font-family:'Anton',sans-serif;font-size:14px;color:#8D8778;border:2px solid #D0C6AC;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">03</div>
+    <h2 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:24px;margin:0 0 8px;">Realizacja (zdjęcia / nagrania)</h2>
+    <div>
+      <p>Tu wszystko dzieje się w praktyce.</p>
+      <p>Prowadzę Cię <em>przez cały proces</em>: ustawienie, ruch, emocje, tempo. Dbam o światło, kadry i detale, żeby materiał był spójny i jakościowy już na etapie nagrania.</p>
+      <p>Nie musisz wiedzieć, co robić — to moja rola.</p>
+    </div>
+    <div style="margin-top:24px;padding:20px 22px;background:#fff;border:1px solid #E3DCC9;border-radius:3px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#D4291B;margin-bottom:14px;font-weight:500;">Checklista dla Ciebie</div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c3-1" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c3-1" style="cursor:pointer;">Bądź na czas</label></div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c3-2" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c3-2" style="cursor:pointer;">Zaufaj procesowi</label></div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c3-3" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c3-3" style="cursor:pointer;">Nie analizuj każdego ujęcia — robimy to razem</label></div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c3-4" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c3-4" style="cursor:pointer;">Weź dobry humor (serio, to pomaga)</label></div>
+    </div>
+  </div>
+
+  <div style="margin:52px 0 0;padding-top:36px;border-top:1px solid #E3DCC9;">
+    <div style="font-family:'Anton',sans-serif;font-size:14px;color:#8D8778;border:2px solid #D0C6AC;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">04</div>
+    <h2 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:24px;margin:0 0 8px;">Postprodukcja</h2>
+    <div>
+      <p>Tu materiał zaczyna żyć.</p>
+      <p>Montuję, układam tempo, dobieram dźwięk, robię kolor, dodaję napisy i elementy graficzne. Wszystko <em>dopasowane</em> do platformy i celu.</p>
+      <p>Dostajesz gotowy materiał — nie „surowy plik", tylko finalny produkt.</p>
+    </div>
+    <div style="margin-top:24px;padding:20px 22px;background:#fff;border:1px solid #E3DCC9;border-radius:3px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:0.08em;color:#D4291B;margin-bottom:14px;font-weight:500;">Checklista dla Ciebie</div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c4-1" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c4-1" style="cursor:pointer;">Poczekaj na pierwszą wersję</label></div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c4-2" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c4-2" style="cursor:pointer;">Daj konkretny feedback w trakcie 3 dni</label></div>
+      <div class="checklist-item" style="display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:15px;"><input type="checkbox" id="c4-3" style="margin-top:3px;width:16px;height:16px;accent-color:#D4291B;flex:none;"/><label for="c4-3" style="cursor:pointer;">Zatwierdź final</label></div>
+    </div>
+  </div>
+
+  <div style="margin:52px 0 0;padding-top:36px;border-top:1px solid #E3DCC9;">
+    <div style="font-family:'Anton',sans-serif;font-size:14px;color:#8D8778;border:2px solid #D0C6AC;border-radius:50%;width:38px;height:38px;display:flex;align-items:center;justify-content:center;margin-bottom:16px;">05</div>
+    <h2 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:24px;margin:0 0 8px;">Final i oddanie</h2>
+    <div>
+      <p>Otrzymujesz materiały gotowe do publikacji.</p>
+      <p>Formaty dopasowane do platform.</p>
+      <p>Jakość, która wygląda dobrze nie tylko na ekranie, ale też w oczach odbiorcy.</p>
+    </div>
+  </div>
+
+  <div style="display:flex;gap:14px;margin:44px 0;padding:20px 22px;background:#FBEBE8;border-left:3px solid #D4291B;border-radius:3px;">
+    <p style="margin:0;color:#171512;font-style:italic;">Nie robię projektów „na szybko, byle było".</p>
+  </div>
+
+  <div style="margin-top:0;">
+    <p>Nie pracuję bez celu.</p>
+    <p>Nie zgaduję, czego chcesz — ustalamy to na początku.</p>
+    <p style="font-weight:700;">Jeśli chcesz współpracy, w której jest <em>jasny proces</em>, odpowiedzialność i efekt, który ma sens — jesteśmy na dobrej drodze.</p>
+  </div>
+
+</article>
+
+<section style="max-width:1180px;margin:0 auto;padding:60px 24px 100px;border-top:1px solid #E3DCC9;">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;text-transform:uppercase;letter-spacing:0.06em;color:#8D8778;margin-bottom:24px;">Powiązane</div>
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:18px;">
+    <a href="qa.html" style="background:#fff;border:1px solid #E3DCC9;border-radius:3px;padding:22px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;color:#D4291B;margin-bottom:8px;">Q&amp;A</div>
+      <div style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:16px;">Jak zarezerwować termin?</div>
+    </a>
+    <a href="/portfolio" style="background:#fff;border:1px solid #E3DCC9;border-radius:3px;padding:22px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;color:#D4291B;margin-bottom:8px;">Portfolio</div>
+      <div style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:16px;">Zobacz kejsy</div>
+    </a>
+    <a href="oferta.html#social" style="background:#fff;border:1px solid #E3DCC9;border-radius:3px;padding:22px;">
+      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;text-transform:uppercase;color:#D4291B;margin-bottom:8px;">Usługa</div>
+      <div style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:16px;">Tworzenie treści do social media</div>
+    </a>
+  </div>
+</section>
+
+<section style="background:#171512;color:#FAF7F1;text-align:center;padding:64px 24px;">
+  <h2 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(24px,4vw,38px);margin:0 0 24px;">Gotowa/y na jasny proces?</h2>
+  <a href="kontakt.html" style="display:inline-block;background:#FAF7F1;color:#171512;font-weight:600;padding:15px 32px;border-radius:40px;">Napisz do mnie →</a>
+</section>
+
+</div>
+
+</x-dc>
+</body>
+</html>

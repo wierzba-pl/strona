@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Zarezerwuj swój termin — Ewa Wierzba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF7F1;
+    --panel:#FFFFFF;
+    --ink:#171512;
+    --ink-soft:#544F45;
+    --ink-faint:#8D8778;
+    --accent:#D4291B;
+    --line:#E3DCC9;
+    --line-strong:#D0C6AC;
+    --free-bg:#EAF3EA;
+    --free-ink:#2F6B3A;
+    --busy-bg:#F1EEE7;
+    --busy-ink:#A79E8C;
+    --radius:3px;
+    --maxw:1080px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:15.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* ---------- Header ---------- */
+  header.page-head{
+    max-width:var(--maxw); margin:0 auto;
+    padding:64px 24px 40px;
+    text-align:center;
+  }
+  .eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:16px;
+  }
+  h1{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    font-size:clamp(30px, 5.5vw, 50px);
+    line-height:1.05;
+    margin:0 0 28px;
+    letter-spacing:-0.01em;
+  }
+  .contact-buttons{
+    display:flex; flex-wrap:wrap; gap:14px; justify-content:center;
+  }
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:14px 26px;
+    border-radius:40px;
+    font-weight:600;
+    font-size:14.5px;
+    text-decoration:none;
+    transition:opacity .15s, transform .15s;
+  }
+  .btn:hover{opacity:0.88;}
+  .btn-instagram{background:var(--ink); color:var(--bg);}
+  .btn-gmail{background:var(--panel); color:var(--ink); border:1.5px solid var(--line-strong);}
+
+  /* ---------- Calendar controls ---------- */
+  .cal-controls{
+    max-width:var(--maxw); margin:0 auto;
+    padding:0 24px 20px;
+    display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:14px;
+  }
+  .cal-nav{display:flex; align-items:center; gap:10px;}
+  .cal-nav button{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    background:var(--panel);
+    border:1px solid var(--line-strong);
+    border-radius:var(--radius);
+    padding:9px 16px;
+    cursor:pointer;
+    color:var(--ink);
+  }
+  .cal-nav button:hover{border-color:var(--accent); color:var(--accent);}
+  .cal-nav button:disabled{opacity:0.35; cursor:not-allowed;}
+  .cal-range-label{
+    font-family:'Anton', sans-serif;
+    font-size:16px;
+    text-transform:uppercase;
+    min-width:180px;
+    text-align:center;
+  }
+  .cal-jump select{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    padding:9px 12px;
+    border-radius:var(--radius);
+    border:1px solid var(--line-strong);
+    background:var(--panel);
+    color:var(--ink);
+  }
+
+  .legend{
+    display:flex; gap:20px; align-items:center;
+    font-size:13px; color:var(--ink-soft);
+  }
+  .legend-item{display:flex; align-items:center; gap:7px;}
+  .legend-dot{width:11px; height:11px; border-radius:3px;}
+  .legend-dot--free{background:var(--free-bg); border:1.5px solid var(--free-ink);}
+  .legend-dot--busy{background:var(--busy-bg); border:1.5px solid var(--busy-ink);}
+
+  /* ---------- Table ---------- */
+  .cal-wrap{
+    max-width:var(--maxw); margin:0 auto;
+    padding:0 24px 100px;
+    overflow-x:auto;
+  }
+  table.cal-table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    overflow:hidden;
+    min-width:760px;
+  }
+  .cal-table th, .cal-table td{
+    padding:14px 12px;
+    text-align:left;
+    border-bottom:1px solid var(--line);
+    border-right:1px solid var(--line);
+    font-size:13.5px;
+  }
+  .cal-table th:last-child, .cal-table td:last-child{border-right:none;}
+  .cal-table thead th{
+    background:var(--bg);
+    font-weight:600;
+    font-size:13px;
+  }
+  .cal-table thead .date-row th{
+    font-family:'IBM Plex Mono', monospace;
+    font-weight:400;
+    color:var(--ink-faint);
+    font-size:12px;
+    padding-top:0;
+  }
+  .cal-table td.slot-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    color:var(--ink-faint);
+    white-space:nowrap;
+    background:var(--bg);
+  }
+  .status-cell{
+    text-align:center;
+    font-weight:600;
+    font-size:12.5px;
+    border-radius:2px;
+  }
+  .status-cell.is-free{background:var(--free-bg); color:var(--free-ink);}
+  .status-cell.is-busy{background:var(--busy-bg); color:var(--busy-ink);}
+
+  .cal-loading{
+    text-align:center; padding:40px 0; color:var(--ink-faint);
+    font-family:'IBM Plex Mono', monospace; font-size:13px;
+  }
+
+  @media (max-width:640px){
+    .cal-controls{flex-direction:column; align-items:stretch;}
+    .cal-nav{justify-content:space-between;}
+    .legend{justify-content:center;}
+  }
+</style>
+</head>
+<body>
+
+<header class="page-head">
+  <div class="eyebrow">Kalendarz</div>
+  <h1>Zarezerwuj<br>swój termin</h1>
+  <div class="contact-buttons">
+    <a class="btn btn-instagram" href="https://instagram.com/direct/t/EWA_WIERZBA_USERNAME" target="_blank" rel="noopener">
+      Napisz do mnie na Instagram
+    </a>
+    <a class="btn btn-gmail" href="mailto:hello@ewawierzba.pl">
+      Skontaktuj się przez Gmail
+    </a>
+  </div>
+</header>
+
+<div class="cal-controls">
+  <div class="cal-nav">
+    <button id="prevWeek" aria-label="Poprzedni tydzień">← Poprzedni</button>
+    <span class="cal-range-label" id="rangeLabel">—</span>
+    <button id="nextWeek" aria-label="Następny tydzień">Następny →</button>
+  </div>
+  <div class="cal-jump">
+    <select id="monthJump" aria-label="Skocz do miesiąca"></select>
+  </div>
+  <div class="legend">
+    <div class="legend-item"><span class="legend-dot legend-dot--free"></span> Wolne</div>
+    <div class="legend-item"><span class="legend-dot legend-dot--busy"></span> Zajęte</div>
+  </div>
+</div>
+
+<div class="cal-wrap">
+  <table class="cal-table" id="calTable">
+    <thead>
+      <tr id="dayNamesRow"></tr>
+      <tr class="date-row" id="dateRow"></tr>
+    </thead>
+    <tbody id="calBody">
+      <tr><td colspan="8" class="cal-loading">Ładowanie kalendarza…</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+/* ==========================================================================
+   ARCHITEKTURA DANYCH — WAŻNE dla wdrożenia w Codex / Next.js
+   ==========================================================================
+   Ta strona jest statycznym DEMO z przykładowymi danymi (SEED poniżej,
+   przepisane ręcznie z realnego Notion użytkowniczki na dzień 17.07.2026).
+   Wszystkie tygodnie POZA seedem domyślnie renderują się jako "wolne" —
+   to tylko placeholder, nie prawdziwa dostępność.
+
+   DOCELOWA ARCHITEKTURA (do zaimplementowania przez Codex):
+
+   1. Źródło prawdy = baza w Notion (użytkowniczka edytuje ręcznie tabelę
+      dzień × slot czasowy, dokładnie jak w obecnym Notion).
+
+   2. Next.js API route, np. /app/api/availability/route.ts:
+      - łączy się z Notion API (server-side, NOTION_API_KEY w .env,
+        NIGDY nie wysyłany do przeglądarki),
+      - pobiera dane z bazy kalendarza,
+      - MAPUJE każdą komórkę na tylko dwa stany: "wolne" / "zajete" —
+        wewnętrzne kody (RES. XX, imiona, notatki) NIGDY nie trafiają
+        do odpowiedzi API ani do frontendu (patrz wcześniejsze ustalenia
+        o prywatności klientów),
+      - zwraca JSON: { "2026-07-13": { "Poniedziałek": ["z","z","z","z"], ... }, ... }
+      - używa ISR / revalidate (np. revalidate: 300 → co 5 minut) albo
+        on-demand revalidation przez Notion webhook, żeby zmiany wprowadzone
+        ręcznie w Notion pojawiały się na stronie bez ręcznego deployu.
+
+   3. Alternatywa: Excel/Google Sheets zamiast Notion — ta sama zasada,
+      inny konektor (Google Sheets API), ten sam kształt JSON na wyjściu.
+
+   4. Frontend (ten plik) wtedy zamiast SEED robi:
+        const res = await fetch('/api/availability?from=...&to=...');
+        const data = await res.json();
+      i renderuje dokładnie tak samo jak teraz.
+
+   Podsumowanie: zmień tylko getWeekData() poniżej, żeby zamiast SEED
+   czytał z prawdziwego API — reszta (nawigacja, render tabeli) zostaje bez zmian.
+   ========================================================================== */
+
+const SLOTS = ["10:00 - 13:00", "13:00 - 16:00", "16:00 - 19:00", "19:00 - 21:00"];
+const DAYS = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"];
+const MONTHS = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
+const SEED = {"2026-07-13": {"Poniedziałek": ["z", "z", "z", "z"], "Wtorek": ["z", "z", "z", "z"], "Środa": ["z", "z", "z", "z"], "Czwartek": ["z", "z", "z", "z"], "Piątek": ["z", "z", "z", "z"], "Sobota": ["z", "z", "z", "z"], "Niedziela": ["z", "z", "z", "z"]}, "2026-07-20": {"Poniedziałek": ["z", "z", "z", "z"], "Wtorek": ["z", "z", "z", "z"], "Środa": ["z", "z", "z", "z"], "Czwartek": ["z", "z", "z", "z"], "Piątek": ["z", "z", "z", "z"], "Sobota": ["z", "z", "z", "z"], "Niedziela": ["z", "z", "z", "z"]}};
+const RANGE_START = "2026-07-13"; // pierwszy poniedziałek zakresu
+const RANGE_END = "2027-12-27";     // ostatni poniedziałek zakresu (koniec 2027)
+
+function parseISO(s){
+  const [y,m,d] = s.split('-').map(Number);
+  return new Date(y, m-1, d);
+}
+function toISO(date){
+  const y = date.getFullYear();
+  const m = String(date.getMonth()+1).padStart(2,'0');
+  const d = String(date.getDate()).padStart(2,'0');
+  return `${y}-${m}-${d}`;
+}
+function addDays(date, n){
+  const d = new Date(date);
+  d.setDate(d.getDate()+n);
+  return d;
+}
+function fmtDDMM(date){
+  const d = String(date.getDate()).padStart(2,'0');
+  const m = String(date.getMonth()+1).padStart(2,'0');
+  return `${d}.${m}`;
+}
+
+const startAnchor = parseISO(RANGE_START);
+const endAnchor = parseISO(RANGE_END);
+let currentWeekStart = new Date(startAnchor);
+
+/* Docelowo: async function getWeekData(weekISO){ const r = await fetch(`/api/availability?week=${weekISO}`); return r.json(); } */
+function getWeekData(weekISO){
+  if (SEED[weekISO]) return SEED[weekISO];
+  // Placeholder: brak realnych danych -> wszystko "wolne"
+  const placeholder = {};
+  DAYS.forEach(day => { placeholder[day] = SLOTS.map(() => "w"); });
+  return placeholder;
+}
+
+function renderWeek(){
+  const weekISO = toISO(currentWeekStart);
+  const weekData = getWeekData(weekISO);
+
+  // header: nazwy dni
+  const dayNamesRow = document.getElementById('dayNamesRow');
+  const dateRow = document.getElementById('dateRow');
+  dayNamesRow.innerHTML = '<th></th>' + DAYS.map(d => `<th>${d}</th>`).join('');
+  dateRow.innerHTML = '<th></th>' + DAYS.map((d,i) => `<th>${fmtDDMM(addDays(currentWeekStart, i))}</th>`).join('');
+
+  // body: sloty
+  const body = document.getElementById('calBody');
+  body.innerHTML = SLOTS.map(slot => {
+    const cells = DAYS.map(day => {
+      const idx = SLOTS.indexOf(slot);
+      const status = (weekData[day] && weekData[day][idx]) || 'w';
+      const isFree = status === 'w';
+      return `<td class="status-cell ${isFree ? 'is-free' : 'is-busy'}">${isFree ? 'Wolne' : 'Zajęte'}</td>`;
+    }).join('');
+    return `<tr><td class="slot-label">${slot}</td>${cells}</tr>`;
+  }).join('');
+
+  // label zakresu
+  const weekEnd = addDays(currentWeekStart, 6);
+  document.getElementById('rangeLabel').textContent =
+    `${fmtDDMM(currentWeekStart)} – ${fmtDDMM(weekEnd)}`;
+
+  // stan przycisków nawigacji
+  document.getElementById('prevWeek').disabled = toISO(currentWeekStart) <= toISO(startAnchor);
+  document.getElementById('nextWeek').disabled = toISO(currentWeekStart) >= toISO(endAnchor);
+
+  syncMonthJump();
+}
+
+function syncMonthJump(){
+  const sel = document.getElementById('monthJump');
+  const targetVal = `${currentWeekStart.getFullYear()}-${currentWeekStart.getMonth()}`;
+  if (sel.value !== targetVal) sel.value = targetVal;
+}
+
+function buildMonthJump(){
+  const sel = document.getElementById('monthJump');
+  const options = [];
+  let cursor = new Date(startAnchor.getFullYear(), startAnchor.getMonth(), 1);
+  const last = new Date(endAnchor.getFullYear(), endAnchor.getMonth(), 1);
+  while (cursor <= last){
+    const val = `${cursor.getFullYear()}-${cursor.getMonth()}`;
+    options.push(`<option value="${val}">${MONTHS[cursor.getMonth()]} ${cursor.getFullYear()}</option>`);
+    cursor = new Date(cursor.getFullYear(), cursor.getMonth()+1, 1);
+  }
+  sel.innerHTML = options.join('');
+  sel.addEventListener('change', () => {
+    const [y,m] = sel.value.split('-').map(Number);
+    let candidate = new Date(y, m, 1);
+    // znajdź pierwszy poniedziałek >= 1 dnia miesiąca, w granicach zakresu
+    while (candidate.getDay() !== 1) candidate = addDays(candidate, 1);
+    if (candidate < startAnchor) candidate = new Date(startAnchor);
+    if (candidate > endAnchor) candidate = new Date(endAnchor);
+    currentWeekStart = candidate;
+    renderWeek();
+  });
+}
+
+document.getElementById('prevWeek').addEventListener('click', () => {
+  const candidate = addDays(currentWeekStart, -7);
+  if (candidate >= startAnchor) { currentWeekStart = candidate; renderWeek(); }
+});
+document.getElementById('nextWeek').addEventListener('click', () => {
+  const candidate = addDays(currentWeekStart, 7);
+  if (candidate <= endAnchor) { currentWeekStart = candidate; renderWeek(); }
+});
+
+buildMonthJump();
+renderWeek();
+</script>
+
+</body>
+</html>

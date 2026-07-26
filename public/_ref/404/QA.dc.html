@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#FAF7F1;color:#171512;font-family:'IBM Plex Mono',monospace;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+</style>
+</helmet>
+
+<div style="background:#FAF7F1;color:#171512;">
+
+<nav style="position:sticky;top:0;z-index:50;background:rgba(250,247,241,0.94);backdrop-filter:blur(6px);border-bottom:1px solid #E3DCC9;">
+  <div style="max-width:1180px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+    <a href="index.html" style="font-family:'Anton',sans-serif;font-size:18px;letter-spacing:0.02em;color:#171512;white-space:nowrap;flex:none;">EWA WIERZBA</a>
+    <div style="display:flex;gap:22px;flex-wrap:wrap;font-size:13px;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;">
+      <a href="oferta.html" style="color:#544F45;">Oferta</a>
+      <a href="portfolio.html" style="color:#544F45;">Portfolio</a>
+      <a href="blog.html" style="color:#544F45;">Blog</a>
+      <a href="qa.html" style="color:#D4291B;">Q&amp;A</a>
+      <a href="kontakt.html" style="color:#544F45;">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<header style="max-width:820px;margin:0 auto;padding:64px 24px 8px;text-align:center;">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#D4291B;margin-bottom:16px;">Q&amp;A</div>
+  <h1 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(32px,5.5vw,52px);line-height:1.02;margin:0 0 16px;letter-spacing:-0.01em;">Pytania, które<br/>pojawiają się najczęściej.</h1>
+  <p style="color:#544F45;font-size:17px;max-width:48ch;margin:0 auto;">Jeśli czegoś tu nie ma — po prostu napisz, odpowiem osobiście.</p>
+</header>
+
+<div style="max-width:820px;margin:0 auto;padding:48px 24px 100px;">
+  <sc-for list="{{ faqItems }}" as="item" hint-placeholder-count="8">
+    <div style="border-bottom:1px solid #E3DCC9;">
+      <button onClick="{{ item.toggle }}" style="width:100%;text-align:left;background:none;border:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:22px 4px;font-family:'IBM Plex Mono',monospace;font-size:16.5px;font-weight:700;color:{{ item.qColor }};">
+        <span>{{ item.q }}</span>
+        <span style="flex:none;width:22px;height:22px;position:relative;">
+          <span style="position:absolute;top:50%;left:0;width:100%;height:2px;background:#D4291B;transform:translateY(-50%);"></span>
+          <span style="position:absolute;left:50%;top:0;width:2px;height:100%;background:#D4291B;transform:translateX(-50%) {{ item.plusRotate }};opacity:{{ item.plusOpacity }};transition:transform .2s ease;"></span>
+        </span>
+      </button>
+      <div style="max-height:{{ item.maxHeight }};overflow:hidden;transition:max-height .25s ease;">
+        <div style="padding:0 4px 24px;color:#544F45;font-size:15.5px;max-width:64ch;">{{ item.a }}</div>
+      </div>
+    </div>
+  </sc-for>
+</div>
+
+<div style="max-width:820px;margin:0 auto;padding:0 24px 80px;text-align:center;">
+  <p style="color:#544F45;margin-bottom:16px;">Nie znalazłeś/aś odpowiedzi na swoje pytanie?</p>
+  <a href="kontakt.html" style="display:inline-block;background:#171512;color:#FAF7F1;padding:14px 28px;border-radius:40px;font-weight:600;font-size:14.5px;">Napisz do mnie →</a>
+</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const QUESTIONS = [
+  { q: 'Jak zarezerwować termin?', a: 'Napisz do mnie na Instagramie albo maila. Ustalamy szczegóły, zakres pracy i po akceptacji podpisujemy umowę. Termin jest rezerwowany bez zaliczki.' },
+  { q: 'Ile wcześniej trzeba się odezwać?', a: 'Najlepiej 1–3 tygodnie wcześniej. Przy większych projektach — nawet wcześniej. Jeśli masz coś „na już" — napisz, zobaczymy, czy da się to wcisnąć.' },
+  { q: 'Czy pomagasz z pomysłem i koncepcją?', a: 'Tak. I to jest duża część mojej pracy. Nie musisz przychodzić z gotowym scenariuszem — rozpracujemy to razem.' },
+  { q: 'Nie mam doświadczenia przed kamerą, to problem?', a: 'Nie. Większość osób nie ma. Prowadzę Cię przez cały proces, tłumaczę, pokazuję i pilnuję, żebyś wyglądał/a naturalnie.' },
+  { q: 'Czy dostanę surowe materiały (RAW)?', a: 'Standardowo nie. Pracuję na finalnym produkcie. Jeśli potrzebujesz RAW — ustalamy to wcześniej jako dodatkową opcję.' },
+  { q: 'Czy zajmujesz się tylko nagraniem, czy też publikacją?', a: 'Mogę zrobić tylko produkcję albo wejść głębiej w strategię i content pod social media. Zależy od Twoich potrzeb.' },
+  { q: 'Czy mogę mieć wpływ na efekt końcowy?', a: 'Tak. Dostajesz materiał do wglądu i możesz zgłosić poprawki. Pracujemy tak, żeby final był dokładnie tym, czego potrzebujesz.' },
+  { q: 'Ile to kosztuje?', a: 'Zależy od zakresu. Masz gotowe pakiety albo indywidualną wycenę pod projekt. Napisz — powiem konkretnie.' }
+];
+
+class Component extends DCLogic {
+  state = { openIndex: null };
+  toggle = (i) => this.setState(s => ({ openIndex: s.openIndex === i ? null : i }));
+  renderVals() {
+    const openIndex = this.state.openIndex;
+    const faqItems = QUESTIONS.map((item, i) => {
+      const isOpen = openIndex === i;
+      return {
+        q: item.q,
+        a: item.a,
+        toggle: () => this.toggle(i),
+        qColor: isOpen ? '#D4291B' : '#171512',
+        maxHeight: isOpen ? '400px' : '0px',
+        plusRotate: isOpen ? 'rotate(90deg)' : 'rotate(0deg)',
+        plusOpacity: isOpen ? 0 : 1
+      };
+    });
+    return { faqItems };
+  }
+}
+</script>
+</body>
+</html>

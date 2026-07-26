@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  @font-face{font-family:'ScriptAccent';src:url('uploads/CoveredByYourGrace-Regular.ttf') format('truetype');font-weight:400;font-style:normal;}
+  *{box-sizing:border-box;}
+  body{margin:0;background:#FAF7F1;color:#171512;font-family:'IBM Plex Mono',monospace;font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;min-height:100vh;}
+  a{color:inherit;text-decoration:none;}
+  @keyframes wobble{0%,100%{transform:rotate(-3deg);}50%{transform:rotate(3deg);}}
+</style>
+</helmet>
+
+<div style="background:#FAF7F1;color:#171512;min-height:100vh;display:flex;flex-direction:column;">
+
+<nav style="position:sticky;top:0;z-index:50;background:rgba(250,247,241,0.94);backdrop-filter:blur(6px);border-bottom:1px solid #E3DCC9;">
+  <div style="max-width:1180px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+    <a href="index.html" style="font-family:'Anton',sans-serif;font-size:18px;letter-spacing:0.02em;color:#171512;white-space:nowrap;flex:none;">EWA WIERZBA</a>
+    <div style="display:flex;gap:22px;flex-wrap:wrap;font-size:13px;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;">
+      <a href="oferta.html" style="color:#544F45;">Oferta</a>
+      <a href="portfolio.html" style="color:#544F45;">Portfolio</a>
+      <a href="blog.html" style="color:#544F45;">Blog</a>
+      <a href="qa.html" style="color:#544F45;">Q&amp;A</a>
+      <a href="kontakt.html" style="color:#544F45;">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<main style="flex:1;display:flex;align-items:center;justify-content:center;padding:64px 24px;text-align:center;">
+  <div style="max-width:600px;">
+    <div style="font-family:'Anton',sans-serif;font-size:clamp(90px,18vw,180px);line-height:0.9;color:#D4291B;margin:0 0 8px;display:inline-block;transform:rotate(-3deg);animation:wobble 3s ease-in-out infinite;">404</div>
+    <h1 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(24px,4vw,36px);line-height:1.1;margin:0 0 18px;">Ups. Ta strona<br/>wyszła na <span style="font-family:'ScriptAccent',cursive;color:#D4291B;font-weight:400;text-transform:none;font-size:1.15em;display:inline-block;transform:rotate(-2deg);">papierosa</span> i nie wróciła.</h1>
+    <p style="color:#544F45;font-size:16.5px;margin:0 0 8px;">Może źle skręciłeś/aś na rondzie internetu.</p>
+    <p style="color:#544F45;font-size:16.5px;margin:0 0 36px;">A może ta strona po prostu jeszcze nie istnieje — jak mój porządek na biurku.</p>
+    <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+      <a href="index.html" style="display:inline-block;background:#171512;color:#FAF7F1;padding:14px 28px;border-radius:40px;font-weight:600;font-size:14.5px;">Wróć na stronę główną →</a>
+      <a href="kontakt.html" style="display:inline-block;background:#fff;color:#171512;border:1.5px solid #D0C6AC;padding:14px 28px;border-radius:40px;font-weight:600;font-size:14.5px;">Albo po prostu napisz</a>
+    </div>
+  </div>
+</main>
+
+<footer style="text-align:center;padding:28px 24px;font-family:'IBM Plex Mono',monospace;font-size:12px;color:#8D8778;border-top:1px solid #E3DCC9;">
+  Błąd 404 — strona nieznaleziona (ale humor został).
+</footer>
+
+</div>
+
+</x-dc>
+</body>
+</html>

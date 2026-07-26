@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Portfolio — Ewa Wierzba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF7F1;
+    --bg-alt:#F2ECDF;
+    --panel:#FFFFFF;
+    --ink:#171512;
+    --ink-soft:#544F45;
+    --ink-faint:#8D8778;
+    --accent:#D4291B;
+    --line:#E3DCC9;
+    --line-strong:#D0C6AC;
+    --radius:3px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0; background:var(--bg); color:var(--ink);
+    font-family:'Inter', sans-serif; font-size:16px; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit; text-decoration:none;}
+
+  /* ---------- Nav ---------- */
+  .topnav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,247,241,0.94); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+  }
+  .topnav-brand{font-family:'Anton', sans-serif; font-size:18px;}
+  .topnav-links{display:flex; gap:22px; font-size:13px; text-transform:uppercase; letter-spacing:0.05em; font-weight:600;}
+  .topnav-links a{color:var(--ink-soft);}
+  .topnav-links a:hover{color:var(--accent);}
+
+  /* ---------- Hero ---------- */
+  .hero{max-width:var(--maxw); margin:0 auto; padding:64px 24px 20px;}
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    letter-spacing:0.12em; text-transform:uppercase; color:var(--accent); margin-bottom:16px;
+  }
+  .hero h1{
+    font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase;
+    font-size:clamp(38px, 6.5vw, 68px); line-height:0.98; margin:0 0 16px; letter-spacing:-0.01em;
+  }
+  .hero h1 .accent-script{
+    font-family:'Caveat', cursive; color:var(--accent); font-weight:700;
+    text-transform:none; font-size:1.15em; display:inline-block; transform:rotate(-2deg);
+  }
+  .hero p{max-width:56ch; color:var(--ink-soft); font-size:17px;}
+
+  /* ---------- Filters ---------- */
+  .filters-bar{
+    max-width:var(--maxw); margin:0 auto; padding:24px 24px 40px;
+    display:flex; flex-wrap:wrap; gap:32px;
+  }
+  .filter-group-label{
+    font-family:'IBM Plex Mono', monospace; font-size:11px; text-transform:uppercase;
+    letter-spacing:0.08em; color:var(--ink-faint); margin-bottom:10px;
+  }
+  .filter-chips{display:flex; flex-wrap:wrap; gap:8px;}
+  .filter-chip{
+    font-family:'Inter', sans-serif; font-size:13px; font-weight:500;
+    background:var(--panel); border:1px solid var(--line-strong); border-radius:20px;
+    padding:8px 16px; cursor:pointer; color:var(--ink-soft);
+    transition:all .15s;
+  }
+  .filter-chip:hover{border-color:var(--accent); color:var(--accent);}
+  .filter-chip.active{background:var(--ink); color:var(--bg); border-color:var(--ink);}
+  .filters-clear{
+    align-self:flex-end;
+    font-family:'IBM Plex Mono', monospace; font-size:12px;
+    color:var(--ink-faint); background:none; border:none; cursor:pointer;
+    text-decoration:underline; padding:0;
+  }
+
+  /* ---------- Grid ---------- */
+  .grid-wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px 100px;}
+  .case-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit, minmax(280px, 1fr));
+    gap:28px;
+  }
+  .case-card{
+    background:var(--panel); border:1px solid var(--line); border-radius:var(--radius);
+    overflow:hidden; transition:transform .15s, box-shadow .15s;
+  }
+  .case-card:hover{transform:translateY(-3px); box-shadow:0 8px 24px rgba(23,21,18,0.08);}
+  .case-card.is-hidden{display:none;}
+  .case-media{
+    aspect-ratio:4/5; background:#0A0A0A; position:relative;
+  }
+  .case-media::after{
+    content:"▸ miejsce na zdjęcie / wideo z projektu";
+    position:absolute; bottom:14px; left:14px; right:14px;
+    font-family:'IBM Plex Mono', monospace; font-size:11px; color:rgba(255,255,255,0.45);
+  }
+  .case-card-body{padding:20px 20px 22px;}
+  .case-tags{display:flex; flex-wrap:wrap; gap:6px; margin-bottom:12px;}
+  .card-tag{
+    font-family:'IBM Plex Mono', monospace; font-size:10.5px; text-transform:uppercase;
+    letter-spacing:0.03em; color:var(--accent); background:#FBEBE8; padding:3px 9px; border-radius:12px;
+  }
+  .case-title{font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase; font-size:19px; margin:0 0 8px;}
+  .case-intro{font-size:13.5px; color:var(--ink-soft); margin:0 0 12px;}
+  .case-client{font-family:'IBM Plex Mono', monospace; font-size:11.5px; color:var(--ink-faint);}
+
+  .empty-state{
+    display:none;
+    text-align:center; padding:80px 24px; color:var(--ink-faint);
+    font-family:'IBM Plex Mono', monospace; font-size:14px;
+  }
+  .empty-state.visible{display:block;}
+
+  @media (max-width:640px){
+    .filters-bar{gap:24px;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="topnav-brand">EWA WIERZBA</div>
+    <div class="topnav-links">
+      <a href="oferta.html">Oferta</a>
+      <a href="kalendarz.html">Kalendarz</a>
+      <a href="regulamin.html">Regulamin</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">Portfolio</div>
+  <h1>Projekty,<br>które mówią <span class="accent-script">same za siebie</span>.</h1>
+  <p>Wybierz kategorię — zobaczysz tylko to, co Cię interesuje.</p>
+</header>
+
+<div class="filters-bar" id="filtersBar">
+  
+<div class="filter-group">
+  <div class="filter-group-label">Kategoria</div>
+  <div class="filter-chips"><button class="filter-chip" data-facet="categories" data-value="Gastronomia">Gastronomia</button><button class="filter-chip" data-facet="categories" data-value="Nieruchomości">Nieruchomości</button><button class="filter-chip" data-facet="categories" data-value="Beauty">Beauty</button><button class="filter-chip" data-facet="categories" data-value="Eventy">Eventy</button><button class="filter-chip" data-facet="categories" data-value="Śluby">Śluby</button><button class="filter-chip" data-facet="categories" data-value="Sesje indywidualne">Sesje indywidualne</button></div>
+</div>
+  <button class="filters-clear" id="clearFilters">Wyczyść filtry</button>
+</div>
+
+<div class="grid-wrap">
+  <div class="case-grid" id="caseGrid">
+    
+<article class="case-card" data-categories="Gastronomia">
+  <a href="portfolio-case.html?slug=projekt-01" class="case-card-link">
+    <!-- MEDIA PLACEHOLDER: obkładka kejsu "Projekt 01".
+         Docelowo: cover image/video z Notion (pole "obkładka"). -->
+    <div class="case-media"></div>
+    <div class="case-card-body">
+      <div class="case-tags"><span class="card-tag">Gastronomia</span></div>
+      <h3 class="case-title">Projekt 01</h3>
+      <p class="case-intro">Krótkie, emocjonalne zdanie o projekcie — jedno-dwa zdania.</p>
+      <span class="case-client">Nazwa klienta</span>
+    </div>
+  </a>
+</article>
+
+<article class="case-card" data-categories="Nieruchomości">
+  <a href="portfolio-case.html?slug=projekt-02" class="case-card-link">
+    <!-- MEDIA PLACEHOLDER: obkładka kejsu "Projekt 02".
+         Docelowo: cover image/video z Notion (pole "obkładka"). -->
+    <div class="case-media"></div>
+    <div class="case-card-body">
+      <div class="case-tags"><span class="card-tag">Nieruchomości</span></div>
+      <h3 class="case-title">Projekt 02</h3>
+      <p class="case-intro">Krótkie, emocjonalne zdanie o projekcie — jedno-dwa zdania.</p>
+      <span class="case-client">Nazwa klienta</span>
+    </div>
+  </a>
+</article>
+
+<article class="case-card" data-categories="Beauty">
+  <a href="portfolio-case.html?slug=projekt-03" class="case-card-link">
+    <!-- MEDIA PLACEHOLDER: obkładka kejsu "Projekt 03".
+         Docelowo: cover image/video z Notion (pole "obkładka"). -->
+    <div class="case-media"></div>
+    <div class="case-card-body">
+      <div class="case-tags"><span class="card-tag">Beauty</span></div>
+      <h3 class="case-title">Projekt 03</h3>
+      <p class="case-intro">Krótkie, emocjonalne zdanie o projekcie — jedno-dwa zdania.</p>
+      <span class="case-client">Nazwa klienta</span>
+    </div>
+  </a>
+</article>
+
+<article class="case-card" data-categories="Eventy">
+  <a href="portfolio-case.html?slug=projekt-04" class="case-card-link">
+    <!-- MEDIA PLACEHOLDER: obkładka kejsu "Projekt 04".
+         Docelowo: cover image/video z Notion (pole "obkładka"). -->
+    <div class="case-media"></div>
+    <div class="case-card-body">
+      <div class="case-tags"><span class="card-tag">Eventy</span></div>
+      <h3 class="case-title">Projekt 04</h3>
+      <p class="case-intro">Krótkie, emocjonalne zdanie o projekcie — jedno-dwa zdania.</p>
+      <span class="case-client">Nazwa klienta</span>
+    </div>
+  </a>
+</article>
+
+<article class="case-card" data-categories="Śluby">
+  <a href="portfolio-case.html?slug=projekt-05" class="case-card-link">
+    <!-- MEDIA PLACEHOLDER: obkładka kejsu "Projekt 05".
+         Docelowo: cover image/video z Notion (pole "obkładka"). -->
+    <div class="case-media"></div>
+    <div class="case-card-body">
+      <div class="case-tags"><span class="card-tag">Śluby</span></div>
+      <h3 class="case-title">Projekt 05</h3>
+      <p class="case-intro">Krótkie, emocjonalne zdanie o projekcie — jedno-dwa zdania.</p>
+      <span class="case-client">Nazwa klienta</span>
+    </div>
+  </a>
+</article>
+
+<article class="case-card" data-categories="Sesje indywidualne">
+  <a href="portfolio-case.html?slug=projekt-06" class="case-card-link">
+    <!-- MEDIA PLACEHOLDER: obkładka kejsu "Projekt 06".
+         Docelowo: cover image/video z Notion (pole "obkładka"). -->
+    <div class="case-media"></div>
+    <div class="case-card-body">
+      <div class="case-tags"><span class="card-tag">Sesje indywidualne</span></div>
+      <h3 class="case-title">Projekt 06</h3>
+      <p class="case-intro">Krótkie, emocjonalne zdanie o projekcie — jedno-dwa zdania.</p>
+      <span class="case-client">Nazwa klienta</span>
+    </div>
+  </a>
+</article>
+  </div>
+  <div class="empty-state" id="emptyState">Brak projektów dla wybranych filtrów.</div>
+</div>
+
+<script>
+/* ==========================================================================
+   ARCHITEKTURA DANYCH — dla wdrożenia w Codex / Next.js + Notion CMS
+   ==========================================================================
+   To DEMO ze slotami-placeholderami (6 przykładowych kart). Docelowo:
+
+   1. Źródło danych = baza "Highlight Projects" w Notion (tytuł, obkładka,
+      krótki wstęp, klient/nisza, kategorie [multi-select], zadanie,
+      koncepcja, co powstało, galeria, rezultat, użyte usługi).
+
+   2. KATEGORIE SĄ DYNAMICZNE — nie ma sztywnej listy w kodzie.
+      Lista chipów filtra budowana jest z unikalnych wartości pola
+      "kategorie" (multi-select) ze WSZYSTKICH kejsów w Notion.
+      Żeby dodać nową kategorię (np. "Motoryzacja"), wystarczy dodać ją
+      jako tag w Notion przy nowym kejsie — chip filtra pojawi się sam,
+      bez zmian w kodzie Next.js.
+
+   3. Next.js: strona /app/portfolio/page.tsx pobiera listę kejsów z Notion
+      API (server-side), oblicza listę unikalnych kategorii z pobranych
+      danych, renderuje dokładnie taką samą siatkę i filtry jak tutaj —
+      tylko z realnymi danymi zamiast CASES w data.py.
+
+   4. Filtrowanie zostaje client-side (jak teraz, po data-categories) —
+      wystarczy że Next.js wygeneruje karty z tym samym atrybutem data-*.
+
+   5. Każda karta linkuje do /portfolio/[slug] — dynamiczny route w Next.js.
+      Zobacz osobny plik portfolio-case.html — szablon strony szczegółowej.
+   ========================================================================== */
+
+const chips = Array.from(document.querySelectorAll('.filter-chip'));
+const cards = Array.from(document.querySelectorAll('.case-card'));
+const emptyState = document.getElementById('emptyState');
+
+const activeCategories = new Set();
+
+function applyFilters(){
+  let visibleCount = 0;
+  cards.forEach(card => {
+    const cardCats = (card.dataset.categories || '').split(' ').filter(Boolean);
+    const visible = activeCategories.size === 0 || cardCats.some(v => activeCategories.has(v));
+    card.classList.toggle('is-hidden', !visible);
+    if (visible) visibleCount++;
+  });
+  emptyState.classList.toggle('visible', visibleCount === 0);
+}
+
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    const value = chip.dataset.value;
+    if (activeCategories.has(value)) { activeCategories.delete(value); chip.classList.remove('active'); }
+    else { activeCategories.add(value); chip.classList.add('active'); }
+    applyFilters();
+  });
+});
+
+document.getElementById('clearFilters').addEventListener('click', () => {
+  activeCategories.clear();
+  chips.forEach(c => c.classList.remove('active'));
+  applyFilters();
+});
+</script>
+
+</body>
+</html>

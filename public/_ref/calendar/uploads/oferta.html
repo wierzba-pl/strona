@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Oferta — Ewa Wierzba</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Caveat:wght@600;700&family=Inter:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#FAF7F1;
+    --bg-alt:#F2ECDF;
+    --panel:#FFFFFF;
+    --ink:#171512;
+    --ink-soft:#544F45;
+    --ink-faint:#8D8778;
+    --accent:#D4291B;
+    --accent-dark:#A31F14;
+    --line:#E3DCC9;
+    --line-strong:#D0C6AC;
+    --radius:3px;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    font-size:16px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  strong{font-weight:700;}
+
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 24px;}
+
+  /* ---------- Top nav ---------- */
+  .topnav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,247,241,0.94);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .topnav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:16px 24px;
+    display:flex; align-items:center; justify-content:space-between; gap:20px;
+  }
+  .topnav-brand{
+    font-family:'Anton', sans-serif;
+    font-size:18px;
+    letter-spacing:0.02em;
+  }
+  .topnav-links{
+    display:flex; gap:22px; flex-wrap:wrap;
+    font-size:13px; text-transform:uppercase; letter-spacing:0.05em;
+    font-weight:600;
+  }
+  .topnav-links a{text-decoration:none; color:var(--ink-soft); transition:color .15s;}
+  .topnav-links a:hover{color:var(--accent);}
+  .topnav-toggle{
+    display:none;
+    background:var(--ink); color:var(--bg); border:none;
+    font-size:12px; text-transform:uppercase; letter-spacing:0.05em; font-weight:700;
+    padding:9px 14px; border-radius:var(--radius); cursor:pointer;
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{
+    max-width:var(--maxw); margin:0 auto; padding:64px 24px 40px;
+    position:relative;
+  }
+  .hero-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.12em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:16px;
+  }
+  .hero h1{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    font-size:clamp(40px, 7vw, 76px);
+    line-height:0.98;
+    letter-spacing:-0.01em;
+    margin:0 0 20px;
+    text-transform:uppercase;
+  }
+  .hero h1 .accent-script{
+    font-family:'Caveat', cursive;
+    color:var(--accent);
+    font-weight:700;
+    text-transform:none;
+    font-size:1.15em;
+    display:inline-block;
+    transform:rotate(-2deg);
+  }
+  .hero p{
+    max-width:56ch;
+    color:var(--ink-soft);
+    font-size:18px;
+  }
+  .hero-reg-link{
+    display:inline-block;
+    margin-top:6px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.03em;
+    color:var(--ink-soft);
+    text-decoration:none;
+    border-bottom:1px solid var(--line-strong);
+    padding-bottom:2px;
+    transition:color .15s, border-color .15s;
+  }
+  .hero-reg-link:hover{color:var(--accent); border-color:var(--accent);}
+
+  /* ---------- Sections ---------- */
+  .offer-section{
+    max-width:var(--maxw); margin:0 auto;
+    padding:72px 24px;
+    border-top:1px solid var(--line);
+    position:relative;
+  }
+  .offer-section:nth-of-type(even){background:var(--bg-alt);}
+
+  .section-head{
+    display:flex; align-items:flex-start; gap:20px;
+    margin-bottom:32px;
+  }
+  .section-num{
+    font-family:'Anton', sans-serif;
+    font-size:15px;
+    color:var(--ink-faint);
+    border:2px solid var(--line-strong);
+    border-radius:50%;
+    width:44px; height:44px;
+    display:flex; align-items:center; justify-content:center;
+    flex:0 0 auto;
+  }
+  .section-eyebrow{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.1em; text-transform:uppercase;
+    color:var(--accent); margin-bottom:6px;
+  }
+  .section-title{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    font-size:clamp(26px, 3.4vw, 38px);
+    line-height:1.05;
+    margin:0;
+    letter-spacing:-0.005em;
+  }
+
+  .section-intro{max-width:68ch; margin-bottom:8px;}
+  .section-intro p{margin:0 0 14px; color:var(--ink); font-size:16.5px;}
+
+  .aside-block{
+    display:flex; gap:16px;
+    max-width:68ch;
+    margin:28px 0;
+    padding:20px 22px;
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+  }
+  .aside-block--sm{padding:16px 18px; margin:18px 0;}
+  .aside-mark{flex:0 0 auto; padding-top:2px;}
+  .mark-asterisk{width:18px; height:18px;}
+  .aside-label{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--accent); margin-bottom:8px; font-weight:500;
+  }
+  .aside-content p{margin:0 0 10px; color:var(--ink-soft); font-size:15px;}
+  .aside-content p:last-child{margin-bottom:0;}
+
+  .closing-line{
+    max-width:60ch;
+    margin:28px 0 8px;
+    padding-left:20px;
+    border-left:3px solid var(--accent);
+  }
+  .closing-line p{margin:0 0 6px; font-size:16.5px;}
+  .closing-line p:first-child{font-weight:700;}
+  .closing-line p:last-child{color:var(--ink-soft);}
+
+  /* ---------- Package cards ---------- */
+  .pkg-grid{
+    display:grid;
+    gap:18px;
+    margin-top:40px;
+    grid-template-columns:repeat(auto-fit, minmax(240px, 1fr));
+  }
+  .pkg-card{
+    background:var(--panel);
+    border:1px solid var(--line);
+    border-radius:var(--radius);
+    padding:26px 22px 24px;
+    position:relative;
+    display:flex; flex-direction:column;
+  }
+  .pkg-card--rec{
+    border-color:var(--accent);
+    box-shadow:0 0 0 1px var(--accent);
+  }
+  .pkg-badge{
+    position:absolute; top:-13px; left:20px;
+    background:var(--accent); color:#fff;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:10.5px; text-transform:uppercase; letter-spacing:0.05em;
+    padding:4px 10px; border-radius:20px;
+  }
+  .pkg-name{
+    font-family:'Anton', sans-serif;
+    font-weight:400;
+    text-transform:uppercase;
+    font-size:19px;
+    margin:6px 0 10px;
+  }
+  .pkg-desc{
+    font-size:13.5px; color:var(--ink-soft);
+    margin:0 0 16px;
+    min-height:54px;
+  }
+  .pkg-features{
+    list-style:none; margin:0 0 16px; padding:0;
+    font-size:13.5px; color:var(--ink);
+  }
+  .pkg-features li{
+    padding:5px 0 5px 18px;
+    position:relative;
+    border-top:1px solid var(--line);
+  }
+  .pkg-features li:first-child{border-top:none;}
+  .pkg-features li::before{
+    content:"+"; position:absolute; left:0; color:var(--accent); font-weight:700;
+  }
+  .pkg-stats{
+    margin:0 0 20px;
+    display:flex; flex-direction:column; gap:6px;
+  }
+  .pkg-stat{
+    display:flex; justify-content:space-between; gap:8px;
+    font-size:12.5px;
+    padding-bottom:6px;
+    border-bottom:1px dashed var(--line);
+  }
+  .pkg-stat-label{color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.03em; font-size:11px;}
+  .pkg-stat-value{color:var(--ink); font-weight:600; text-align:right;}
+  .pkg-price-row{margin-top:auto; padding-top:14px;}
+  .pkg-price{
+    font-family:'Anton', sans-serif;
+    font-size:28px;
+    position:relative;
+    display:inline-block;
+  }
+  .scribble-wrap{position:relative; display:inline-block;}
+  .scribble-circle{
+    position:absolute;
+    left:50%; top:50%;
+    width:150%; height:220%;
+    transform:translate(-50%,-50%);
+    pointer-events:none;
+  }
+
+  .section-note{
+    max-width:68ch; margin-top:26px;
+    font-size:14px; color:var(--ink-soft);
+    padding-top:20px; border-top:1px solid var(--line);
+  }
+  .section-note p{margin:0 0 10px;}
+
+  /* ---------- Media placeholders (video/photo examples) ---------- */
+  .media-row{
+    display:grid;
+    grid-template-columns:repeat(3, 1fr);
+    gap:22px;
+    margin-top:52px;
+  }
+  .media-item{display:flex; flex-direction:column;}
+  .media-slot{
+    aspect-ratio:9/16;
+    background:#0A0A0A;
+    border-radius:var(--radius);
+    position:relative;
+    overflow:hidden;
+  }
+  .media-slot::after{
+    content:"▸ miejsce na odtwarzacz";
+    position:absolute; bottom:12px; left:12px; right:12px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px; letter-spacing:0.02em;
+    color:rgba(255,255,255,0.45);
+  }
+  .media-caption{
+    font-family:'Inter', sans-serif;
+    font-weight:600;
+    font-size:14px;
+    color:var(--ink);
+    margin:12px 0 6px;
+  }
+  .media-link{
+    display:inline-block;
+    align-self:flex-start;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.02em;
+    color:var(--accent);
+    text-decoration:none;
+    border-bottom:1px solid var(--accent);
+    padding-bottom:1px;
+    transition:opacity .15s;
+  }
+  .media-link:hover{opacity:0.65;}
+
+  /* ---------- Combo ---------- */
+  .combo-block{margin-top:44px;}
+  .combo-heading{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; text-transform:uppercase; letter-spacing:0.08em;
+    color:var(--ink-faint); margin:0 0 16px;
+  }
+  .combo-grid{
+    display:grid; gap:16px;
+    grid-template-columns:repeat(auto-fit, minmax(220px, 1fr));
+  }
+  .combo-card{
+    background:var(--ink); color:var(--bg);
+    border-radius:var(--radius);
+    padding:22px;
+  }
+  .combo-name{font-family:'Anton', sans-serif; font-weight:400; font-size:15px; text-transform:uppercase; margin:0 0 10px;}
+  .combo-includes{font-size:13px; color:#D8D3C7; margin:0 0 10px;}
+  .combo-effect{font-size:13px; color:#D8D3C7; margin:0 0 16px;}
+  .combo-price{font-family:'Anton', sans-serif; font-size:22px; color:var(--accent-soft, #E8A79E);}
+
+  /* ---------- Pricing / hourly ---------- */
+  .pricing-block{max-width:68ch; margin-top:40px;}
+  .pricing-heading{
+    font-family:'Anton', sans-serif;
+    font-weight:400; text-transform:uppercase;
+    font-size:20px; margin:0 0 12px;
+  }
+  .pricing-intro{color:var(--ink-soft); font-size:15px; margin:0 0 18px;}
+  .hourly-list{list-style:none; margin:0 0 18px; padding:0;}
+  .hourly-list li{
+    display:flex; align-items:baseline; gap:8px;
+    padding:9px 0; border-bottom:1px solid var(--line);
+    font-size:15px;
+  }
+  .hourly-label{text-transform:capitalize; color:var(--ink);}
+  .hourly-dots{flex:1; border-bottom:1px dotted var(--line-strong); margin-bottom:4px;}
+  .hourly-value{font-family:'IBM Plex Mono', monospace; font-weight:500; color:var(--accent);}
+  .minimum-order{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px; color:var(--ink-faint);
+    margin-top:14px;
+  }
+  .minimum-order strong{color:var(--ink);}
+
+  /* ---------- Closing block ---------- */
+  .closing-block{
+    max-width:var(--maxw); margin:0 auto;
+    padding:80px 24px;
+    border-top:1px solid var(--line);
+    text-align:center;
+  }
+  .closing-inner{max-width:56ch; margin:0 auto; position:relative;}
+  .mark-underline-wrap{display:block; width:160px; margin:0 auto 8px;}
+  .mark-underline{width:100%; height:16px;}
+  .closing-title{
+    font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase;
+    font-size:clamp(26px,4vw,38px); margin:0 0 20px;
+  }
+  .closing-inner p{color:var(--ink-soft); font-size:15.5px; margin:0 0 14px;}
+  .closing-link{
+    display:inline-block; margin-top:10px;
+    font-weight:700; color:var(--accent); text-decoration:none;
+    border-bottom:2px solid var(--accent);
+    padding-bottom:2px;
+  }
+
+  /* ---------- Final CTA ---------- */
+  .final-cta{
+    background:var(--ink); color:var(--bg);
+    text-align:center;
+    padding:70px 24px 90px;
+  }
+  .final-cta-nav{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px; letter-spacing:0.15em; text-transform:uppercase;
+    color:var(--accent-soft, #E8A79E); margin-bottom:18px;
+  }
+  .final-cta-title{
+    font-family:'Anton', sans-serif; font-weight:400; text-transform:uppercase;
+    font-size:clamp(32px,6vw,56px); margin:0 0 28px; letter-spacing:-0.01em;
+  }
+  .final-cta-button{
+    display:inline-block;
+    background:var(--bg); color:var(--ink);
+    font-family:'Inter', sans-serif; font-weight:600;
+    padding:16px 34px; border-radius:40px;
+    text-decoration:none; font-size:16px;
+  }
+
+  /* ---------- Responsive ---------- */
+  @media (max-width:900px){
+    .topnav-links{
+      display:none;
+      position:absolute; top:100%; left:0; right:0;
+      flex-direction:column; gap:0;
+      background:var(--bg); border-bottom:1px solid var(--line);
+      padding:8px 24px 16px;
+    }
+    .topnav-links.open{display:flex;}
+    .topnav-links a{padding:10px 0; border-bottom:1px solid var(--line);}
+    .topnav-toggle{display:inline-block;}
+    .pkg-grid{grid-template-columns:1fr;}
+    .media-row{grid-template-columns:1fr; max-width:280px; margin-left:auto; margin-right:auto;}
+  }
+
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<nav class="topnav">
+  <div class="topnav-inner">
+    <div class="topnav-brand">EWA WIERZBA</div>
+    <button class="topnav-toggle" id="navToggle">Menu</button>
+    <div class="topnav-links" id="navLinks">
+      <a href="#social">Tworzenie treści do social media</a><a href="#eventy">Eventy / wydarzenia</a><a href="#sesje">Sesje indywidualne</a><a href="#slub">Sesje ślubne</a>
+      <a href="regulamin.html">Regulamin</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-eyebrow">Oferta</div>
+  <h1>Współpraca,<br>która ma <span class="accent-script">sens i cel</span>.</h1>
+  <a class="hero-reg-link" href="regulamin.html">Zasady współpracy — Regulamin →</a>
+</header>
+
+
+<section class="offer-section" id="social">
+  <div class="section-head">
+    <span class="section-num">01</span>
+    <div>
+      <div class="section-eyebrow">Kierunek 01</div>
+      <h2 class="section-title">Tworzenie treści do social media</h2>
+    </div>
+  </div>
+
+  <div class="section-intro"><p>Robię treści dla marek, które chcą wyglądać dobrze, a nie tylko „coś wrzucić” — internetu i tak jest już pełno tego drugiego.</p>
+<p>Nie jestem kamerzystą na godziny ani montażystą z przypadkowego zlecenia. Biorę cały proces na siebie — od pomysłu po gotowy materiał — żebyś Ty nie musiał/a się tym zajmować, tylko dostać coś, co faktycznie wygląda jak Ty.</p></div>
+  
+<div class="aside-block">
+  <span class="aside-mark"><svg class="mark-asterisk" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M12 2 V22 M4 7 L20 17 M20 7 L4 17" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"/>
+</svg></span>
+  <div class="aside-content">
+    <div class="aside-label">Jak to wygląda</div>
+    <p>Najpierw rozkładamy Twoją markę na czynniki pierwsze — kim jesteś, czym różnisz się od dziesięciu innych robiących „to samo”. Potem robimy z tego plan, nagrywamy w warunkach, które kontroluję, a nie przypadek, a na końcu składam to w materiał, który ma tempo, sens i — co najważniejsze — Twój charakter, a nie kolejny szablon zeskrolowany z Instagrama.</p>
+  </div>
+</div>
+  <div class="closing-line"><p>Ty nie zastanawiasz się, jak ma wyglądać Twoja marka w socialach.</p>
+<p>Masz gotową wizję, dopasowaną do Ciebie, a nie do algorytmu — choć akurat algorytm też lubi, jak coś wygląda dobrze.</p></div>
+  <div class="pkg-grid pkg-grid--4">
+<article class="pkg-card">
+  
+  <h3 class="pkg-name">Starter</h3>
+  <p class="pkg-desc">Idealny na pierwszą współpracę i pierwsze kroki do regularnego, jakościowego contentu</p>
+  <ul class="pkg-features"><li>koncepcja</li><li>nagranie</li><li>montaż + podstawowa grafika</li></ul>
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Wideo</span><span class="pkg-stat-value">5</span></div><div class="pkg-stat"><span class="pkg-stat-label">Zdjęcia</span><span class="pkg-stat-value">20</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">2 godziny</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas oddania</span><span class="pkg-stat-value">14 dni roboczych</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price">1000 zł</span>
+  </div>
+</article>
+<article class="pkg-card pkg-card--rec">
+  <div class="pkg-badge">Najczęściej wybierany</div>
+  <h3 class="pkg-name">Growth</h3>
+  <p class="pkg-desc">Idealny pakiet na miesiąc, żeby utrzymać stałą obecność i testować formaty</p>
+  <ul class="pkg-features"><li>koncepcja</li><li>nagranie</li><li>montaż + podstawowa grafika</li></ul>
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Wideo</span><span class="pkg-stat-value">9</span></div><div class="pkg-stat"><span class="pkg-stat-label">Zdjęcia</span><span class="pkg-stat-value">35</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">3 godziny</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas oddania</span><span class="pkg-stat-value">14 dni roboczych</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price"><span class="scribble-wrap">1500 zł<svg class="scribble-circle" viewBox="0 0 140 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M8,32 C4,14 28,4 62,4 C100,4 134,10 132,30 C130,50 96,56 60,56 C28,56 6,48 10,34" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+</svg></span></span>
+  </div>
+</article>
+<article class="pkg-card">
+  
+  <h3 class="pkg-name">Premium</h3>
+  <p class="pkg-desc">Dla tych, którzy chcą większej częstotliwości publikacji i mieć content przygotowany z wyprzedzeniem</p>
+  <ul class="pkg-features"><li>koncepcja</li><li>nagranie</li><li>montaż + podstawowa grafika</li><li>Audyt profilu Instagram</li><li>Projekt feedu na Instagramie</li></ul>
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Wideo</span><span class="pkg-stat-value">12</span></div><div class="pkg-stat"><span class="pkg-stat-label">Zdjęcia</span><span class="pkg-stat-value">45</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">3–5 godzin</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas oddania</span><span class="pkg-stat-value">14 dni roboczych</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price">1800 zł</span>
+  </div>
+</article>
+<article class="pkg-card">
+  
+  <h3 class="pkg-name">Content Intro</h3>
+  <p class="pkg-desc">Jeśli masz kilka lokalizacji, filii albo po prostu chcesz mocno zaznaczyć swoją obecność na rynku</p>
+  <ul class="pkg-features"><li>koncepcja</li><li>nagranie</li><li>montaż + podstawowa grafika</li></ul>
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Wideo</span><span class="pkg-stat-value">18</span></div><div class="pkg-stat"><span class="pkg-stat-label">Zdjęcia</span><span class="pkg-stat-value">70</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">9 godzin (2 sesje/mies.)</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas oddania</span><span class="pkg-stat-value">14 dni roboczych</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price">2500 zł</span>
+  </div>
+</article></div>
+  <div class="section-note"><p>Pakiety dotyczą krótkich form video do 30 sekund, realizowanych w prostym formacie produkcyjnym — stworzone pod content do social media: szybki, estetyczny i regularny. To oznacza prostą, sprawną realizację: nagrania na 1–2 lokalizacjach, bez skomplikowanej produkcji, tak żeby content powstawał szybko, regularnie i bez zbędnego przeciążenia — ani dla Ciebie, ani dla mnie. Dzięki temu masz stały dopływ materiałów, które wyglądają dobrze i są gotowe do publikacji, bez przepłacania za produkcję reklamową, której tu po prostu nie potrzebujesz.</p></div>
+  
+  
+<div class="pricing-block">
+  <h3 class="pricing-heading">Jeśli Twój pomysł wymaga większej produkcji —</h3>
+  <p class="pricing-intro">więcej lokacji, rozbudowanego scenariusza, dłuższych form albo bardziej zaawansowanego montażu — spokojnie, też to robimy. Tylko wtedy wycena jest indywidualna, bo udawanie, że każdy pomysł mieści się w jednym pakiecie, byłoby nieuczciwe wobec Ciebie.</p>
+  <div class="aside-block aside-block--sm"><span class="aside-mark"><svg class="mark-asterisk" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M12 2 V22 M4 7 L20 17 M20 7 L4 17" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"/>
+</svg></span><div class="aside-content"><p>Filmy reklamowe, dłuższe formaty, większe produkcje, kilka lokalizacji czy niestandardowe pomysły wymagają innego podejścia i dokładniejszego planowania.</p></div></div>
+  <ul class="hourly-list"><li><span class="hourly-label">nagrania</span><span class="hourly-dots"></span><span class="hourly-value">200 zł / godzina</span></li><li><span class="hourly-label">montaż</span><span class="hourly-dots"></span><span class="hourly-value">150 zł / godzina</span></li></ul>
+  <p>Płacisz dokładnie za zakres pracy, który jest realnie potrzebny — bez przepłacania za rzeczy, których i tak nie wykorzystasz.</p>
+<p>Przed rozpoczęciem projektu zawsze ustalamy zakres i szacowany czas, żebyś dokładnie wiedział/a, czego się spodziewać. Bez niespodzianek w fakturze.</p>
+  <div class="minimum-order">Minimalne zamówienie: <strong>500 zł</strong></div>
+</div>
+  
+  <!-- MEDIA PLACEHOLDER — sekcja "Tworzenie treści do social media"
+       Tutaj mają być 3 przykłady wideo/foto z tego kierunku (portfolio tej kategorii).
+       Docelowo: każdy .media-slot zamienia się w odtwarzacz wideo podłączony
+       do Cloudflare R2 (patrz ustalenia dot. hostingu wideo) albo zdjęcie z portfolio.
+       .media-caption = nazwa konkretnego projektu (teraz placeholder, do podmiany).
+       .media-link = przycisk "Zobacz więcej", prowadzi do strony /portfolio
+       z opisem tego konkretnego projektu — href trzeba podmienić na realny slug,
+       gdy strona portfolio będzie gotowa. -->
+  <div class="media-row">
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="1" data-section="social" aria-label="Miejsce na przykład wideo/foto 1"></div>
+      <div class="media-caption">Nazwa projektu 1</div>
+      <a class="media-link" href="portfolio.html#social-projekt-1" data-portfolio-slug="social-projekt-1">Zobacz więcej →</a>
+    </div>
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="2" data-section="social" aria-label="Miejsce na przykład wideo/foto 2"></div>
+      <div class="media-caption">Nazwa projektu 2</div>
+      <a class="media-link" href="portfolio.html#social-projekt-2" data-portfolio-slug="social-projekt-2">Zobacz więcej →</a>
+    </div>
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="3" data-section="social" aria-label="Miejsce na przykład wideo/foto 3"></div>
+      <div class="media-caption">Nazwa projektu 3</div>
+      <a class="media-link" href="portfolio.html#social-projekt-3" data-portfolio-slug="social-projekt-3">Zobacz więcej →</a>
+    </div>
+  </div>
+</section>
+
+<section class="offer-section" id="eventy">
+  <div class="section-head">
+    <span class="section-num">02</span>
+    <div>
+      <div class="section-eyebrow">Kierunek 02</div>
+      <h2 class="section-title">Eventy / wydarzenia</h2>
+    </div>
+  </div>
+
+  <div class="section-intro"><p>Robię eventy dla organizatorów, dla których wydarzenie to coś więcej niż logistyka i checklisty.</p>
+<p>Nie jestem „osobą z kamerą w kącie sali”. Jestem częścią wydarzenia i biorę na siebie odpowiedzialność za to, żeby żaden ważny moment nie przeleciał obok.</p></div>
+  
+<div class="aside-block">
+  <span class="aside-mark"><svg class="mark-asterisk" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M12 2 V22 M4 7 L20 17 M20 7 L4 17" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"/>
+</svg></span>
+  <div class="aside-content">
+    <div class="aside-label">Jak to wygląda</div>
+    <p>Najpierw gadamy o charakterze wydarzenia i o tym, co jest w nim naprawdę ważne. Potem jestem na miejscu — obserwuję, reaguję, łapię detale i emocje, zanim zdążą zniknąć. Na końcu składam to w materiał, który oddaje klimat i do którego chce się wracać, a nie tylko raz obejrzeć i zapomnieć w folderze „do posortowania”.</p>
+  </div>
+</div>
+  <div class="closing-line"><p>Ty nie martwisz się, czy coś zostało nagrane.</p>
+<p>Masz pewność, że najważniejsze momenty są uchwycone — a Ty możesz po prostu być na swoim evencie, zamiast pilnować kamery kątem oka.</p></div>
+  
+  
+  
+  
+<div class="pricing-block">
+  <h3 class="pricing-heading">Indywidualna wycena</h3>
+  <p class="pricing-intro">Każde wydarzenie jest inne — inny czas, skala, tempo i potrzeby. Dlatego cena ustalana jest indywidualnie, na podstawie zakresu pracy i czasu realizacji. Pracuję w modelu godzinowym, dzięki czemu płacisz dokładnie za to, czego potrzebujesz:</p>
+  <ul class="hourly-list"><li><span class="hourly-label">filmowanie</span><span class="hourly-dots"></span><span class="hourly-value">250 zł / godzina</span></li><li><span class="hourly-label">fotografowanie</span><span class="hourly-dots"></span><span class="hourly-value">200 zł / godzina</span></li><li><span class="hourly-label">montaż</span><span class="hourly-dots"></span><span class="hourly-value">150 zł / godzina</span></li><li><span class="hourly-label">obróbka zdjęć</span><span class="hourly-dots"></span><span class="hourly-value">100 zł / godzina</span></li></ul>
+  <p>Przed realizacją zawsze ustalamy zakres i orientacyjny czas, żeby wszystko było jasne od początku — bez „a ja myślałem/am, że to wliczone”.</p>
+  <div class="minimum-order">Minimalne zamówienie: <strong>500 zł</strong></div>
+</div>
+  
+  <!-- MEDIA PLACEHOLDER — sekcja "Eventy / wydarzenia"
+       Tutaj mają być 3 przykłady wideo/foto z tego kierunku (portfolio tej kategorii).
+       Docelowo: każdy .media-slot zamienia się w odtwarzacz wideo podłączony
+       do Cloudflare R2 (patrz ustalenia dot. hostingu wideo) albo zdjęcie z portfolio.
+       .media-caption = nazwa konkretnego projektu (teraz placeholder, do podmiany).
+       .media-link = przycisk "Zobacz więcej", prowadzi do strony /portfolio
+       z opisem tego konkretnego projektu — href trzeba podmienić na realny slug,
+       gdy strona portfolio będzie gotowa. -->
+  <div class="media-row">
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="1" data-section="eventy" aria-label="Miejsce na przykład wideo/foto 1"></div>
+      <div class="media-caption">Nazwa projektu 1</div>
+      <a class="media-link" href="portfolio.html#eventy-projekt-1" data-portfolio-slug="eventy-projekt-1">Zobacz więcej →</a>
+    </div>
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="2" data-section="eventy" aria-label="Miejsce na przykład wideo/foto 2"></div>
+      <div class="media-caption">Nazwa projektu 2</div>
+      <a class="media-link" href="portfolio.html#eventy-projekt-2" data-portfolio-slug="eventy-projekt-2">Zobacz więcej →</a>
+    </div>
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="3" data-section="eventy" aria-label="Miejsce na przykład wideo/foto 3"></div>
+      <div class="media-caption">Nazwa projektu 3</div>
+      <a class="media-link" href="portfolio.html#eventy-projekt-3" data-portfolio-slug="eventy-projekt-3">Zobacz więcej →</a>
+    </div>
+  </div>
+</section>
+
+<section class="offer-section" id="sesje">
+  <div class="section-head">
+    <span class="section-num">03</span>
+    <div>
+      <div class="section-eyebrow">Kierunek 03</div>
+      <h2 class="section-title">Sesje indywidualne</h2>
+    </div>
+  </div>
+
+  <div class="section-intro"><p>To nie jest tylko sesja zdjęciowa. To moment, w którym zaczynasz widzieć siebie inaczej — wiem, że to brzmi jak coś z Instagrama, ale naprawdę tak to działa.</p>
+<p>Nie musisz umieć pozować. Nie musisz wiedzieć, co robić. Serio — tej umiejętności nikt nie ma od urodzenia, trzeba się jej nauczyć, tak jak wszystkiego innego. Prowadzę Cię przez cały proces, od pomysłu po finalne kadry.</p></div>
+  
+<div class="aside-block">
+  <span class="aside-mark"><svg class="mark-asterisk" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M12 2 V22 M4 7 L20 17 M20 7 L4 17" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"/>
+</svg></span>
+  <div class="aside-content">
+    <div class="aside-label">Jak to wygląda</div>
+    <p>Najpierw rozmawiamy. Jeśli nie masz pomysłu — spokojnie, to nie jest egzamin, pomagam to zbudować od zera. Potem ustalamy detale: miejsce, styl, ubrania, vibe sesji. Na samej sesji nie zostajesz sam/a z aparatem i moim milczeniem — mówię, co robić, jak się ustawić, gdzie spojrzeć. Bez sztywnych póz, bez stresu, bez udawania kogoś, kim nie jesteś. Szukamy momentów, w których jesteś naprawdę sobą — a to zwykle wychodzi najlepiej, kiedy człowiek w końcu przestaje się starać.</p>
+<p>Po sesji selekcjonuję materiał i składam go w spójną całość: kolor, światło, detale, retusz — bez przesady, bez zamieniania Cię w kogoś innego.</p>
+<p>Na końcu dostajesz gotowe zdjęcia. Takie, na które można spojrzeć i pomyśleć: to naprawdę ja — nie jakaś wersja mnie z filtrem.</p>
+  </div>
+</div>
+  
+  <div class="pkg-grid pkg-grid--3">
+<article class="pkg-card">
+  
+  <h3 class="pkg-name">Basic</h3>
+  <p class="pkg-desc">Na początek. Bez stresu, bez presji, po prostu dobry start</p>
+  
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Zdjęcia</span><span class="pkg-stat-value">25 obrobionych (kolor + retusz)</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">1 godzina</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas oddania</span><span class="pkg-stat-value">14 dni roboczych</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price">600 zł</span>
+  </div>
+</article>
+<article class="pkg-card pkg-card--rec">
+  <div class="pkg-badge">Najczęściej wybierany</div>
+  <h3 class="pkg-name">Look &amp; Details</h3>
+  <p class="pkg-desc">Więcej czasu, więcej swobody, więcej detali</p>
+  
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Zdjęcia</span><span class="pkg-stat-value">45 obrobionych (kolor + retusz)</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">2 godziny</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas oddania</span><span class="pkg-stat-value">14 dni roboczych</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price"><span class="scribble-wrap">800 zł<svg class="scribble-circle" viewBox="0 0 140 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M8,32 C4,14 28,4 62,4 C100,4 134,10 132,30 C130,50 96,56 60,56 C28,56 6,48 10,34" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+</svg></span></span>
+  </div>
+</article>
+<article class="pkg-card">
+  
+  <h3 class="pkg-name">Concept &amp; Depth</h3>
+  <p class="pkg-desc">Tu zaczyna się historia, nie tylko zdjęcia</p>
+  
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Zdjęcia</span><span class="pkg-stat-value">65 profesjonalnych (kolor + retusz)</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">3 godziny</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas oddania</span><span class="pkg-stat-value">14 dni roboczych</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price">1000 zł</span>
+  </div>
+</article></div>
+  
+  
+  
+<div class="pricing-block">
+  <h3 class="pricing-heading">Indywidualna wycena</h3>
+  <p class="pricing-intro">Jeśli masz własny pomysł, chcesz więcej lokalizacji, dłuższy czas albo bardziej kreatywną realizację — robimy to indywidualnie.</p>
+  
+  
+  <p>👉 dopasowuję sesję do Ciebie, nie odwrotnie</p>
+  
+</div>
+  
+  <!-- MEDIA PLACEHOLDER — sekcja "Sesje indywidualne"
+       Tutaj mają być 3 przykłady wideo/foto z tego kierunku (portfolio tej kategorii).
+       Docelowo: każdy .media-slot zamienia się w odtwarzacz wideo podłączony
+       do Cloudflare R2 (patrz ustalenia dot. hostingu wideo) albo zdjęcie z portfolio.
+       .media-caption = nazwa konkretnego projektu (teraz placeholder, do podmiany).
+       .media-link = przycisk "Zobacz więcej", prowadzi do strony /portfolio
+       z opisem tego konkretnego projektu — href trzeba podmienić na realny slug,
+       gdy strona portfolio będzie gotowa. -->
+  <div class="media-row">
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="1" data-section="sesje" aria-label="Miejsce na przykład wideo/foto 1"></div>
+      <div class="media-caption">Nazwa projektu 1</div>
+      <a class="media-link" href="portfolio.html#sesje-projekt-1" data-portfolio-slug="sesje-projekt-1">Zobacz więcej →</a>
+    </div>
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="2" data-section="sesje" aria-label="Miejsce na przykład wideo/foto 2"></div>
+      <div class="media-caption">Nazwa projektu 2</div>
+      <a class="media-link" href="portfolio.html#sesje-projekt-2" data-portfolio-slug="sesje-projekt-2">Zobacz więcej →</a>
+    </div>
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="3" data-section="sesje" aria-label="Miejsce na przykład wideo/foto 3"></div>
+      <div class="media-caption">Nazwa projektu 3</div>
+      <a class="media-link" href="portfolio.html#sesje-projekt-3" data-portfolio-slug="sesje-projekt-3">Zobacz więcej →</a>
+    </div>
+  </div>
+</section>
+
+<section class="offer-section" id="slub">
+  <div class="section-head">
+    <span class="section-num">04</span>
+    <div>
+      <div class="section-eyebrow">Kierunek 04</div>
+      <h2 class="section-title">Sesje ślubne</h2>
+    </div>
+  </div>
+
+  <div class="section-intro"><p>Nie robię „ładnych ujęć na pokaz” — tego jest już wystarczająco dużo w internecie.</p>
+<p>Łapię momenty, spojrzenia, napięcie, detale — wszystko to, czego nie da się powtórzyć, bo ślub dzieje się raz i nikt nie krzyknie „jeszcze jedno ujęcie”.</p>
+<p>Pracuję spokojnie, bez chaosu i bez ustawiania Was w sztuczne pozy przez pół dnia — bo szczerze, nikt tego nie lubi, nawet jeśli się do tego nie przyzna. Obserwuję, reaguję i składam to w historię, która naprawdę coś czuje się, a nie tylko ogląda.</p></div>
+  
+<div class="aside-block">
+  <span class="aside-mark"><svg class="mark-asterisk" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M12 2 V22 M4 7 L20 17 M20 7 L4 17" stroke="var(--accent)" stroke-width="2.4" stroke-linecap="round"/>
+</svg></span>
+  <div class="aside-content">
+    <div class="aside-label">Co wchodzi w realizację</div>
+    <p>Praca na miejscu z profesjonalnym sprzętem — dopasowanym do warunków, światła i dynamiki dnia, bo ślub nie czeka, aż światło zrobi się idealne.</p>
+<p>Reportaż, detale, emocje, momenty między momentami — wszystko, co tworzy klimat tego dnia, łącznie z tymi kilkoma sekundami chaosu, które później i tak okazują się najładniejsze.</p>
+<p>A potem postprodukcja: selekcja materiału, kolor, montaż, tempo, muzyka. Składam to w spójną historię, do której chce się wracać — nie tylko raz, a za parę lat też.</p>
+  </div>
+</div>
+  
+  <div class="pkg-grid pkg-grid--5">
+<article class="pkg-card">
+  
+  <h3 class="pkg-name">Foto „Wedding Day”</h3>
+  <p class="pkg-desc">Dla tych, którzy chcą zatrzymać cały klimat dnia, bez stresu i bez ustawianych momentów</p>
+  <ul class="pkg-features"><li>reportaż ślubny</li><li>naturalne ujęcia, emocje, detale</li><li>selekcja i obróbka zdjęć</li></ul>
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Zdjęcia</span><span class="pkg-stat-value">100 po obróbce</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">do 7 godzin</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas oddania</span><span class="pkg-stat-value">14 dni roboczych</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price">1800 zł</span>
+  </div>
+</article>
+<article class="pkg-card">
+  
+  <h3 class="pkg-name">Foto Love Story</h3>
+  <p class="pkg-desc">Dla par, które chcą uchwycić siebie — bez pośpiechu i bez presji</p>
+  <ul class="pkg-features"><li>sesja dla par</li><li>pomoc w koncepcji i klimacie</li><li>profesjonalny retusz</li></ul>
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Zdjęcia</span><span class="pkg-stat-value">35 z retuszem</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">do 2 godzin</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas oddania</span><span class="pkg-stat-value">14 dni roboczych</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price">800 zł</span>
+  </div>
+</article>
+<article class="pkg-card pkg-card--rec">
+  <div class="pkg-badge">Najczęściej wybierany</div>
+  <h3 class="pkg-name">Wedding Reels Package</h3>
+  <p class="pkg-desc">Dla tych, którzy chcą zobaczyć swój dzień w dynamicznej, współczesnej formie</p>
+  <ul class="pkg-features"><li>główny reels ślubny</li><li>5 highlightów (pierwszy taniec, emocje, goście, detale)</li><li>montaż + dopasowanie do social media</li></ul>
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Wideo</span><span class="pkg-stat-value">główny reels + 5 highlightów</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">do 7 godzin</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price"><span class="scribble-wrap">2250 zł<svg class="scribble-circle" viewBox="0 0 140 60" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<path d="M8,32 C4,14 28,4 62,4 C100,4 134,10 132,30 C130,50 96,56 60,56 C28,56 6,48 10,34" fill="none" stroke="var(--accent)" stroke-width="3" stroke-linecap="round"/>
+</svg></span></span>
+  </div>
+</article>
+<article class="pkg-card">
+  
+  <h3 class="pkg-name">Film ślubny do 3 min</h3>
+  <p class="pkg-desc">Krótka, intensywna forma — esencja dnia</p>
+  <ul class="pkg-features"><li>film poziomy</li><li>montaż z dynamiką i klimatem</li><li>selekcja najważniejszych momentów</li></ul>
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Wideo</span><span class="pkg-stat-value">film do 3 min</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">do 7 godzin</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price">2500 zł</span>
+  </div>
+</article>
+<article class="pkg-card">
+  
+  <h3 class="pkg-name">Film ślubny do 10 min</h3>
+  <p class="pkg-desc">Dla tych, którzy chcą przeżyć ten dzień jeszcze raz, krok po kroku</p>
+  <ul class="pkg-features"><li>rozbudowana historia dnia</li><li>więcej scen, więcej emocji, więcej kontekstu</li><li>montaż + narracja</li></ul>
+  <div class="pkg-stats"><div class="pkg-stat"><span class="pkg-stat-label">Wideo</span><span class="pkg-stat-value">film do 10 min</span></div><div class="pkg-stat"><span class="pkg-stat-label">Czas sesji</span><span class="pkg-stat-value">do 7 godzin</span></div></div>
+  <div class="pkg-price-row">
+    <span class="pkg-price">3000 zł</span>
+  </div>
+</article></div>
+  
+  
+<div class="combo-block">
+  <h3 class="combo-heading">Pakiety kombo</h3>
+  <div class="combo-grid">
+<article class="combo-card">
+  <h4 class="combo-name">Foto Wedding Day + Love Story</h4>
+  <p class="combo-includes">Reportaż + sesja narzeczeńska</p>
+  <p class="combo-effect">👉 efekt: pełna historia — od Was jako pary po dzień ślubu</p>
+  <div class="combo-price">2200 zł</div>
+</article>
+<article class="combo-card">
+  <h4 class="combo-name">Love Story + Wedding Reels</h4>
+  <p class="combo-includes">Sesja + reels ślubny + 5 highlightów</p>
+  <p class="combo-effect">👉 efekt: gotowy content + wspomnienia</p>
+  <div class="combo-price">2650 zł</div>
+</article>
+<article class="combo-card">
+  <h4 class="combo-name">Wedding Reels + Film 3 min</h4>
+  <p class="combo-includes">Reels + film poziomy</p>
+  <p class="combo-effect">👉 efekt: dynamiczny materiał + klasyczna forma</p>
+  <div class="combo-price">3000 zł</div>
+</article></div>
+</div>
+  
+<div class="pricing-block">
+  <h3 class="pricing-heading">Indywidualna wycena</h3>
+  <p class="pricing-intro">Każdy ślub jest inny. Inna dynamika, inne miejsce, inny klimat — i szczerze, gdyby istniał jeden sztywny pakiet na wszystko, pewnie nie byłby uczciwy wobec Was w cenniku.
+
+Dlatego przy bardziej rozbudowanych realizacjach wycena ustalana jest indywidualnie — na podstawie czasu pracy i zakresu materiału.
+
+Dzięki temu macie pewność, że wszystko jest dopasowane dokładnie do Was, a nie do sztywnego pakietu.</p>
+  
+  
+  
+  <div class="minimum-order">Minimalne zamówienie: <strong>500 zł</strong></div>
+</div>
+  
+  <!-- MEDIA PLACEHOLDER — sekcja "Sesje ślubne"
+       Tutaj mają być 3 przykłady wideo/foto z tego kierunku (portfolio tej kategorii).
+       Docelowo: każdy .media-slot zamienia się w odtwarzacz wideo podłączony
+       do Cloudflare R2 (patrz ustalenia dot. hostingu wideo) albo zdjęcie z portfolio.
+       .media-caption = nazwa konkretnego projektu (teraz placeholder, do podmiany).
+       .media-link = przycisk "Zobacz więcej", prowadzi do strony /portfolio
+       z opisem tego konkretnego projektu — href trzeba podmienić na realny slug,
+       gdy strona portfolio będzie gotowa. -->
+  <div class="media-row">
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="1" data-section="slub" aria-label="Miejsce na przykład wideo/foto 1"></div>
+      <div class="media-caption">Nazwa projektu 1</div>
+      <a class="media-link" href="portfolio.html#slub-projekt-1" data-portfolio-slug="slub-projekt-1">Zobacz więcej →</a>
+    </div>
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="2" data-section="slub" aria-label="Miejsce na przykład wideo/foto 2"></div>
+      <div class="media-caption">Nazwa projektu 2</div>
+      <a class="media-link" href="portfolio.html#slub-projekt-2" data-portfolio-slug="slub-projekt-2">Zobacz więcej →</a>
+    </div>
+    <div class="media-item">
+      <div class="media-slot" data-media-slot="3" data-section="slub" aria-label="Miejsce na przykład wideo/foto 3"></div>
+      <div class="media-caption">Nazwa projektu 3</div>
+      <a class="media-link" href="portfolio.html#slub-projekt-3" data-portfolio-slug="slub-projekt-3">Zobacz więcej →</a>
+    </div>
+  </div>
+</section>
+
+
+<section class="final-cta">
+  <div class="final-cta-nav">USŁUGI &nbsp; KURS &nbsp; PORTFOLIO</div>
+  <h2 class="final-cta-title">CHCĘ Z TOBĄ PRACOWAĆ</h2>
+  <a class="final-cta-button" href="mailto:hello@ewawierzba.pl">porozmawiajmy.</a>
+</section>
+
+<script>
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    navLinks.classList.toggle('open');
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+  }));
+</script>
+
+</body>
+</html>

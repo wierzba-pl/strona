@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;background:#FAF7F1;color:#171512;font-family:'IBM Plex Mono',monospace;font-size:15.5px;line-height:1.6;-webkit-font-smoothing:antialiased;}
+  a{color:inherit;text-decoration:none;}
+</style>
+</helmet>
+
+<div style="background:#FAF7F1;color:#171512;">
+
+<nav style="position:sticky;top:0;z-index:50;background:rgba(250,247,241,0.94);backdrop-filter:blur(6px);border-bottom:1px solid #E3DCC9;">
+  <div style="max-width:1080px;margin:0 auto;padding:16px 24px;display:flex;align-items:center;justify-content:space-between;gap:20px;">
+    <a href="index.html" style="font-family:'Anton',sans-serif;font-size:18px;letter-spacing:0.02em;color:#171512;white-space:nowrap;flex:none;">EWA WIERZBA</a>
+    <div style="display:flex;gap:22px;flex-wrap:wrap;font-size:13px;text-transform:uppercase;letter-spacing:0.05em;font-weight:600;">
+      <a href="oferta.html" style="color:#544F45;">Oferta</a>
+      <a href="portfolio.html" style="color:#544F45;">Portfolio</a>
+      <a href="blog.html" style="color:#544F45;">Blog</a>
+      <a href="kalendarz.html" style="color:#D4291B;">Kalendarz</a>
+      <a href="kontakt.html" style="color:#544F45;">Kontakt</a>
+    </div>
+  </div>
+</nav>
+
+<header style="max-width:1080px;margin:0 auto;padding:64px 24px 40px;text-align:center;">
+  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;letter-spacing:0.12em;text-transform:uppercase;color:#D4291B;margin-bottom:16px;">Kalendarz</div>
+  <h1 style="font-family:'Anton',sans-serif;font-weight:400;text-transform:uppercase;font-size:clamp(30px,5.5vw,50px);line-height:1.05;margin:0 0 28px;letter-spacing:-0.01em;">Zarezerwuj<br/>swój termin</h1>
+  <div style="display:flex;flex-wrap:wrap;gap:14px;justify-content:center;">
+    <a href="https://instagram.com/direct/t/EWA_WIERZBA_USERNAME" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:40px;font-weight:600;font-size:14.5px;background:#171512;color:#FAF7F1;">Napisz do mnie na Instagram</a>
+    <a href="mailto:hello@ewawierzba.pl" style="display:inline-flex;align-items:center;gap:8px;padding:14px 26px;border-radius:40px;font-weight:600;font-size:14.5px;background:#fff;color:#171512;border:1.5px solid #D0C6AC;">Skontaktuj się przez Gmail</a>
+  </div>
+</header>
+
+<div style="max-width:1080px;margin:0 auto;padding:0 24px 20px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px;">
+  <div style="display:flex;align-items:center;gap:10px;">
+    <button onClick="{{ prevMonth }}" disabled="{{ prevDisabled }}" style="font-family:'IBM Plex Mono',monospace;font-size:13px;background:#fff;border:1px solid #D0C6AC;border-radius:3px;padding:9px 16px;cursor:pointer;color:#171512;">← Poprzedni</button>
+    <span style="font-family:'Anton',sans-serif;font-size:16px;text-transform:uppercase;min-width:180px;text-align:center;display:inline-block;">{{ monthLabel }}</span>
+    <button onClick="{{ nextMonth }}" disabled="{{ nextDisabled }}" style="font-family:'IBM Plex Mono',monospace;font-size:13px;background:#fff;border:1px solid #D0C6AC;border-radius:3px;padding:9px 16px;cursor:pointer;color:#171512;">Następny →</button>
+  </div>
+  <div>
+    <select value="{{ monthJumpValue }}" onChange="{{ onMonthJump }}" style="font-family:'IBM Plex Mono',monospace;font-size:13px;padding:9px 12px;border-radius:3px;border:1px solid #D0C6AC;background:#fff;color:#171512;">
+      <sc-for list="{{ monthOptions }}" as="opt" hint-placeholder-count="12">
+        <option value="{{ opt.value }}">{{ opt.label }}</option>
+      </sc-for>
+    </select>
+  </div>
+  <div style="display:flex;gap:18px;align-items:center;font-size:13px;color:#544F45;flex-wrap:wrap;">
+    <div style="display:flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border-radius:3px;background:#EAF3EA;border:1.5px solid #2F6B3A;display:inline-block;"></span> Wolne</div>
+    <div style="display:flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border-radius:3px;background:#FDF3D9;border:1.5px solid #B8862F;display:inline-block;"></span> Częściowo</div>
+    <div style="display:flex;align-items:center;gap:7px;"><span style="width:11px;height:11px;border-radius:3px;background:#F1EEE7;border:1.5px solid #A79E8C;display:inline-block;"></span> Zajęte</div>
+  </div>
+</div>
+
+<div style="max-width:1080px;margin:0 auto;padding:0 24px 100px;">
+  <div style="background:#fff;border:1px solid #E3DCC9;border-radius:3px;overflow:hidden;">
+    <div style="display:grid;grid-template-columns:repeat(7,1fr);">
+      <sc-for list="{{ dayNames }}" as="dn" hint-placeholder-count="7">
+        <div style="padding:12px 8px;text-align:center;font-size:12px;font-weight:600;text-transform:uppercase;letter-spacing:0.03em;color:#544F45;background:#FAF7F1;border-bottom:1px solid #E3DCC9;border-right:1px solid #E3DCC9;">{{ dn }}</div>
+      </sc-for>
+    </div>
+    <sc-for list="{{ weeks }}" as="week" hint-placeholder-count="5">
+      <div style="display:grid;grid-template-columns:repeat(7,1fr);">
+        <sc-for list="{{ week.days }}" as="d" hint-placeholder-count="7">
+          <div style="min-height:92px;padding:10px 10px 8px;border-bottom:1px solid #E3DCC9;border-right:1px solid #E3DCC9;background:{{ d.bg }};opacity:{{ d.opacity }};display:flex;flex-direction:column;gap:8px;">
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#171512;font-weight:500;">{{ d.num }}</span>
+            <span style="font-size:11px;font-weight:600;color:{{ d.statusColor }};">{{ d.statusLabel }}</span>
+          </div>
+        </sc-for>
+      </div>
+    </sc-for>
+  </div>
+</div>
+
+</div>
+
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+const SLOTS = ["10:00 - 13:00", "13:00 - 16:00", "16:00 - 19:00", "19:00 - 21:00"];
+const DAYS_PL = ["Poniedziałek", "Wtorek", "Środa", "Czwartek", "Piątek", "Sobota", "Niedziela"];
+const MONTHS = ["styczeń", "luty", "marzec", "kwiecień", "maj", "czerwiec", "lipiec", "sierpień", "wrzesień", "październik", "listopad", "grudzień"];
+const SEED = {"2026-07-13": {"Poniedziałek": ["z", "z", "z", "z"], "Wtorek": ["z", "z", "z", "z"], "Środa": ["z", "z", "z", "z"], "Czwartek": ["z", "z", "z", "z"], "Piątek": ["z", "z", "z", "z"], "Sobota": ["z", "z", "z", "z"], "Niedziela": ["z", "z", "z", "z"]}, "2026-07-20": {"Poniedziałek": ["z", "z", "z", "z"], "Wtorek": ["z", "z", "z", "z"], "Środa": ["z", "z", "z", "z"], "Czwartek": ["z", "z", "z", "z"], "Piątek": ["z", "z", "z", "z"], "Sobota": ["z", "z", "z", "z"], "Niedziela": ["z", "z", "z", "z"]}};
+const RANGE_START = "2026-07-13";
+const RANGE_END = "2027-12-27";
+
+function parseISO(s){ const [y,m,d] = s.split('-').map(Number); return new Date(y, m-1, d); }
+function toISO(date){ const y = date.getFullYear(); const m = String(date.getMonth()+1).padStart(2,'0'); const d = String(date.getDate()).padStart(2,'0'); return `${y}-${m}-${d}`; }
+function addDays(date, n){ const d = new Date(date); d.setDate(d.getDate()+n); return d; }
+function mondayOf(date){ const dow = date.getDay(); const diff = dow === 0 ? -6 : 1 - dow; return addDays(date, diff); }
+
+function getWeekData(weekISO){
+  if (SEED[weekISO]) return SEED[weekISO];
+  const placeholder = {};
+  DAYS_PL.forEach(day => { placeholder[day] = SLOTS.map(() => "w"); });
+  return placeholder;
+}
+
+function dayStatus(date){
+  const monday = mondayOf(date);
+  const weekISO = toISO(monday);
+  const weekData = getWeekData(weekISO);
+  const dow = date.getDay();
+  const dayName = DAYS_PL[dow === 0 ? 6 : dow - 1];
+  const slots = (weekData[dayName]) || SLOTS.map(() => 'w');
+  const freeCount = slots.filter(s => s === 'w').length;
+  if (freeCount === slots.length) return { label: 'Wolne', color: '#2F6B3A', bg: '#EAF3EA' };
+  if (freeCount === 0) return { label: 'Zajęte', color: '#A79E8C', bg: '#F1EEE7' };
+  return { label: `Częściowo (${freeCount}/${slots.length})`, color: '#B8862F', bg: '#FDF3D9' };
+}
+
+class Component extends DCLogic {
+  startAnchor = parseISO(RANGE_START);
+  endAnchor = parseISO(RANGE_END);
+  state = { viewYear: this.startAnchorYear(), viewMonth: this.startAnchorMonth() };
+
+  startAnchorYear(){ return parseISO(RANGE_START).getFullYear(); }
+  startAnchorMonth(){ return parseISO(RANGE_START).getMonth(); }
+
+  clampToRange(y, m){
+    const cand = new Date(y, m, 1);
+    const minM = new Date(this.startAnchor.getFullYear(), this.startAnchor.getMonth(), 1);
+    const maxM = new Date(this.endAnchor.getFullYear(), this.endAnchor.getMonth(), 1);
+    if (cand < minM) return { y: minM.getFullYear(), m: minM.getMonth() };
+    if (cand > maxM) return { y: maxM.getFullYear(), m: maxM.getMonth() };
+    return { y, m };
+  }
+
+  prevMonth = () => {
+    let y = this.state.viewYear, m = this.state.viewMonth - 1;
+    if (m < 0) { m = 11; y -= 1; }
+    const c = this.clampToRange(y, m);
+    this.setState({ viewYear: c.y, viewMonth: c.m });
+  };
+  nextMonth = () => {
+    let y = this.state.viewYear, m = this.state.viewMonth + 1;
+    if (m > 11) { m = 0; y += 1; }
+    const c = this.clampToRange(y, m);
+    this.setState({ viewYear: c.y, viewMonth: c.m });
+  };
+  onMonthJump = (e) => {
+    const [y, m] = e.target.value.split('-').map(Number);
+    const c = this.clampToRange(y, m);
+    this.setState({ viewYear: c.y, viewMonth: c.m });
+  };
+
+  renderVals() {
+    const { viewYear, viewMonth } = this.state;
+    const firstOfMonth = new Date(viewYear, viewMonth, 1);
+    const gridStart = mondayOf(firstOfMonth);
+    const lastOfMonth = new Date(viewYear, viewMonth + 1, 0);
+    let gridEnd = mondayOf(lastOfMonth);
+    while (gridEnd < lastOfMonth) gridEnd = addDays(gridEnd, 1);
+    const totalDays = Math.round((gridEnd - gridStart) / 86400000) + 1;
+    const totalWeeks = Math.ceil(totalDays / 7);
+
+    const weeks = [];
+    let cursor = new Date(gridStart);
+    for (let w = 0; w < totalWeeks; w++) {
+      const days = [];
+      for (let i = 0; i < 7; i++) {
+        const inMonth = cursor.getMonth() === viewMonth;
+        const st = dayStatus(cursor);
+        days.push({
+          num: cursor.getDate(),
+          bg: st.bg,
+          statusColor: st.color,
+          statusLabel: st.label,
+          opacity: inMonth ? 1 : 0.35
+        });
+        cursor = addDays(cursor, 1);
+      }
+      weeks.push({ days });
+    }
+
+    const monthOptions = [];
+    let mc = new Date(this.startAnchor.getFullYear(), this.startAnchor.getMonth(), 1);
+    const last = new Date(this.endAnchor.getFullYear(), this.endAnchor.getMonth(), 1);
+    while (mc <= last) {
+      monthOptions.push({ value: `${mc.getFullYear()}-${mc.getMonth()}`, label: `${MONTHS[mc.getMonth()]} ${mc.getFullYear()}` });
+      mc = new Date(mc.getFullYear(), mc.getMonth()+1, 1);
+    }
+
+    return {
+      dayNames: DAYS_PL,
+      weeks,
+      monthLabel: `${MONTHS[viewMonth]} ${viewYear}`,
+      monthJumpValue: `${viewYear}-${viewMonth}`,
+      monthOptions,
+      prevDisabled: viewYear === this.startAnchor.getFullYear() && viewMonth === this.startAnchor.getMonth(),
+      nextDisabled: viewYear === this.endAnchor.getFullYear() && viewMonth === this.endAnchor.getMonth(),
+      prevMonth: this.prevMonth,
+      nextMonth: this.nextMonth,
+      onMonthJump: this.onMonthJump
+    };
+  }
+}
+</script>
+</body>
+</html>
