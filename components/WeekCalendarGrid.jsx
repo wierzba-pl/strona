@@ -50,7 +50,7 @@ export default function WeekCalendarGrid() {
   useEffect(() => {
     let active = true;
     setLoading(true);
-    fetch(`/api/calendar?start=${isoDate(days[0])}&end=${isoDate(days[6])}`)
+    fetch(`/kalendarz?calendar=1&start=${isoDate(days[0])}&end=${isoDate(days[6])}`)
       .then((response) => response.json())
       .then((payload) => {
         if (active) setData(payload);
