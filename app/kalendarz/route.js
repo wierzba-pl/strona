@@ -22,7 +22,11 @@ export async function GET(request) {
     }
 
     const data = await getCalendarRange(start, end);
-    return NextResponse.json(data);
+    return NextResponse.json(data, {
+      headers: {
+        "Cache-Control": "no-store, max-age=0"
+      }
+    });
   }
 
   return htmlResponse(renderCalendarPage());
