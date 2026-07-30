@@ -208,7 +208,39 @@ function serialize(name, value) {
   return `export const ${name} = ${JSON.stringify(value, null, 2)};\n`;
 }
 
-const portfolioSnapshot = await getPortfolioSnapshot();
+const WROCLAWSKI_BARBER_INTRO =
+  "Igor oficjalnie zarejestrowany jako zawodnik prestiżowej federacji HYROX, gdzie startuje w wymagającej kategorii HYROX PRO. Nie skupia się na klasycznej kulturystyce czy typowych zawodach sylwetkowych. Przekuł swoją siłę, muskulaturę i dyscyplinę w sporty wytrzymałościowo-siłowe (cross-trening).";
+
+function cleanPortfolioSnapshot(cases) {
+  return cases.map((item) => {
+    let blocks = item.blocks || [];
+
+    if (item.slug === "wroclawskibarber") {
+      let replaced = false;
+      blocks = blocks.map((block) => {
+        if (!replaced && block.type === "paragraph" && block.text) {
+          replaced = true;
+          return { ...block, text: WROCLAWSKI_BARBER_INTRO };
+        }
+        return block;
+      });
+    }
+
+    if (item.slug === "pawel_bevz") {
+      blocks = blocks.map((block, index) => {
+        if (index !== 0 || block.type !== "paragraph" || !/^https:\/\/www\.google\.com\/url/i.test(block.text || "")) return block;
+        return {
+          ...block,
+          text: String(block.text).replace(/^https:\/\/www\.google\.com\/url[^\n]*(?:\n\s*)?/i, "").trim()
+        };
+      });
+    }
+
+    return { ...item, blocks };
+  });
+}
+
+const portfolioSnapshot = cleanPortfolioSnapshot(await getPortfolioSnapshot());
 const calendarSnapshot = await getCalendarSnapshot();
 
 const output = `${serialize("portfolioSnapshot", portfolioSnapshot)}\n${serialize("calendarSnapshot", calendarSnapshot)}`;
