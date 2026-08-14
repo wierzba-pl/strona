@@ -16,6 +16,26 @@ const nextConfig = {
   async rewrites() {
     return [
       {
+        source: "/blog",
+        destination: "/blog/index.html"
+      },
+      {
+        source: "/kontakt",
+        destination: "/kontakt/index.html"
+      },
+      {
+        source: "/produkty",
+        destination: "/produkty/index.html"
+      },
+      {
+        source: "/qa",
+        destination: "/qa/index.html"
+      },
+      {
+        source: "/regulamin",
+        destination: "/regulamin/index.html"
+      },
+      {
         source: "/free-ukraine",
         destination: "/free-ukraine/index.html"
       }
