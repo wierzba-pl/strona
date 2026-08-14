@@ -40,6 +40,7 @@ export default function NotFound() {
             <Link href="/kalendarz">Kalendarz</Link>
             <Link href="/qa">Q&amp;A</Link>
             <Link href="/produkty">Produkty</Link>
+            <Link href="/free-ukraine">Free Ukraine</Link>
             <Link href="/kontakt">Kontakt</Link>
             <Link href="/regulamin">Regulamin</Link>
           </div>

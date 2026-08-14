@@ -12,6 +12,14 @@ const nextConfig = {
   webpack: (config) => {
     config.resolve.symlinks = false;
     return config;
+  },
+  async rewrites() {
+    return [
+      {
+        source: "/free-ukraine",
+        destination: "/free-ukraine/index.html"
+      }
+    ];
   }
 };
 
