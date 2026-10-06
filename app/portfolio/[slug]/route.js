@@ -1,10 +1,21 @@
-import { getPortfolioCase, getSimilarCases } from "@/lib/notion/portfolio";
+import { getPortfolioCase, getPortfolioCases, getSimilarCases } from "@/lib/notion/portfolio";
 import { htmlResponse, renderPortfolioCasePage } from "@/lib/dynamic-pages";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const dynamic = "force-static";
+export const dynamicParams = false;
 
-export async function GET(request, { params }) {
+export async function generateStaticParams() {
+  const cases = await getPortfolioCases();
+  const params = cases.map((item) => ({ slug: item.slug }));
+
+  if (cases.some((item) => item.slug === "temnuy_s-photo")) {
+    params.push({ slug: "temnuy-s-photo" });
+  }
+
+  return params;
+}
+
+export async function GET(_request, { params }) {
   const item = await getPortfolioCase(params.slug);
 
   if (!item) {
@@ -15,6 +26,5 @@ export async function GET(request, { params }) {
   }
 
   const similar = await getSimilarCases(item);
-  const from = new URL(request.url).searchParams.get("from");
-  return htmlResponse(renderPortfolioCasePage(item, similar, { from }));
+  return htmlResponse(renderPortfolioCasePage(item, similar));
 }

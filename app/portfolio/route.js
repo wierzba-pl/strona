@@ -1,8 +1,7 @@
 import { categoriesFromCases, getPortfolioCases } from "@/lib/notion/portfolio";
 import { htmlResponse, renderPortfolioPage } from "@/lib/dynamic-pages";
 
-export const dynamic = "force-dynamic";
-export const revalidate = 0;
+export const dynamic = "force-static";
 
 export async function GET() {
   const cases = await getPortfolioCases();
